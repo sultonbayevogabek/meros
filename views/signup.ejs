@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+
+<section class="auth-section register">
+    <div class="auth-card" id="phone_register">
+        <h2>Регистрация</h2>
+
+        <form class="auth__form" id="phone_register_form">
+            <label class="auth-label mb-10">
+                <span>Телефон</span>
+                <input class="input" type="tel" id="user_phone" name="user_phone">
+            </label>
+            <label class="auth-label-text mb-30">
+                Введите номер телефона чтобы получить код активации
+            </label>
+            <button class="button-blue" type="submit" disabled>
+                Получить код активации
+                <img class="loading-spinner" src="/images/icons/spinner.svg" alt="">
+            </button>
+        </form>
+    </div>
+    <div class="exists-account">
+        <span>Есть аккаунт?</span>
+        <a href="/login">Войти</a>
+    </div>
+</section>
+
+<%- include('partials/catalog-modal') %>
+<%- include('partials/categories-modal') %>
+
+<%- include('partials/footer') %>
