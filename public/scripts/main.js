@@ -10,12 +10,10 @@ import feedbackRating from './_feedback-rating'
 import categoriesMenu from './_categories-menu'
 import filterModal from './_filter-modal'
 import validateForm from './_validate-forms'
-import registerPhone from './_register-phone'
 import maskPhoneInput from './_mask-input'
 import loader from './_loader'
 import rangeSlider from './_range-slider'
-import resetPasswordPhone from './_reset-password-phone'
-import resetPassword from './_reset-password'
+import signup from './_signup'
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -28,10 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
    categoriesMenu()
    filterModal()
    validateForm()
-   registerPhone()
    maskPhoneInput()
    loader()
    rangeSlider()
-   resetPasswordPhone()
-   resetPassword()
+   signup()
 })

@@ -14,4 +14,4 @@ function removeClass(element, className) {
    element.classList.remove(className)
 }
 
-export {selectOne, selectAll, addClass, removeClass}
+export { selectOne, selectAll, addClass, removeClass }

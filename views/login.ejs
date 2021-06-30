@@ -4,23 +4,10 @@
 <section class="auth-section">
     <div class="auth-card">
         <h2>Авторизация</h2>
-
-        <% if (error === 'Error: Invalid phone' || error === 'Error: Invalid password') { %>
-            <div class="alert">Неверные данные</div>
-        <% } else if (error === 'Error: This phone does not exist') { %>
-            <div class="alert">
-                <p>Этот номер ранее не регистрировался. Пожалуйста, зарегистрируйтесь</p>
-            </div>
-        <% } else if (error === 'Error: Password is not correct') { %>
-            <div class="alert">
-                <p>Пароль введен неверно</p>
-            </div>
-        <% } %>
-
-        <form class="auth__form" action="/login" method="post">
+        <form class="auth__form">
             <label class="auth-label">
                 <span>Телефон</span>
-                <input class="input" type="tel" id="user_phone" name="phone">
+                <input class="input" type="tel" id="phone" name="phone">
             </label>
             <label class="auth-label">
                 <span>Пароль</span>
@@ -28,8 +15,8 @@
             </label>
 
             <button class="button-blue" type="submit" disabled>Войти</button>
-            <a class="button-outline" href="/signup">Зарегистрироваться</a>
-            <a class="forgot-password" href="/reset-password">Забыли пароль?</a>
+            <a class="button-outline" href="/users/signup">Зарегистрироваться</a>
+            <a class="forgot-password" href="/users/reset-password">Забыли пароль?</a>
         </form>
     </div>
 </section>
