@@ -3,7 +3,8 @@ const { Sequelize } = require("sequelize");
 const Models = require("../models/Models");
 
 const sequelize = new Sequelize(
-    "postgres://postgres:123@localhost:5432/meros",
+    // "postgres://postgres:123@localhost:5432/meros",
+    "postgres://wccqxinj:G8x2RtkZcByxUkcx3OL0D0Z_DcufEdgh@batyr.db.elephantsql.com/wccqxinj",
     {
         logging: false
     }

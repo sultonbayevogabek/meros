@@ -1,6 +1,6 @@
 {
-    "code_attempts": 3,
-    "phone_attempts": 3,
+    "code_attempts": 4,
+    "phone_attempts": 1,
     "verification_text": "Meros internet do'koniga kirish uchun tasdiqlash kodi: ",
-    "ban_time": 7200000
+    "ban_time": 300000
 }

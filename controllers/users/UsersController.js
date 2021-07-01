@@ -1,13 +1,13 @@
-const phoneValidation = require("../../validations/phone-validation");
-const fs = require("fs/promises");
-const path = require("path");
-const sendSms = require("../../modules/send-sms");
-const generateCode = require("../../modules/generate-code");
-const codeValidation = require("../../validations/code-validation");
-const signupValidation = require("../../validations/signup-validation");
-const { generateToken } = require("../../modules/jwt");
-const  { Op } = require("sequelize");
-const moment = require("moment");
+const phoneValidation = require("../../validations/phone-validation")
+const fs = require("fs/promises")
+const path = require("path")
+const sendSms = require("../../modules/send-sms")
+const generateCode = require("../../modules/generate-code")
+const codeValidation = require("../../validations/code-validation")
+const signupValidation = require("../../validations/signup-validation")
+const { generateToken } = require("../../modules/jwt")
+const { Op } = require("sequelize")
+const moment = require("moment")
 
 module.exports = class UsersController {
    static async getSignUp(req, res) {
@@ -24,8 +24,8 @@ module.exports = class UsersController {
 
    static async CheckPhone(req, res) {
       try {
-         const { users } = req.db;
-         const { phone} = await phoneValidation.validateAsync(req.body);
+         const {users} = req.db;
+         const {phone} = await phoneValidation.validateAsync(req.body);
 
          if (!phone) {
             throw new Error("invalid phone number");
@@ -52,27 +52,25 @@ module.exports = class UsersController {
 
    static async Signup(req, res) {
       try {
-         const {users, sessions} = req.db;
+         const { users } = req.db;
 
-         const {phone, name, email} = await signupValidation.validateAsync(
-            req.body
-         );
+         const { phone, name, email } = await signupValidation.validateAsync(req.body)
 
          let user = await users.findOne({
             where: {
-               phone_number: phone,
-            },
-         });
+               phone_number: phone
+            }
+         })
 
          if (user) {
-            throw new Error("User has already been registered");
+            throw new Error("User has already been registered")
          }
 
          user = await users.create({
             phone_number: phone,
             full_name: name,
             email: email
-         });
+         })
 
          res.status(201).json({
             ok: true,
@@ -84,23 +82,23 @@ module.exports = class UsersController {
       } catch (e) {
          res.status(400).json({
             ok: false,
-            message: e + "",
+            message: e + ""
          })
       }
    }
 
    static async Login(req, res) {
       try {
-         const {users, attempts, bans} = req.db;
+         const { users, attempts, bans } = req.db
 
-         const {phone} = await phoneValidation.validateAsync(req.body);
+         const {phone} = await phoneValidation.validateAsync(req.body)
 
          let user = await users.findOne({
             where: {
-               phone_number: phone,
+               phone_number: phone
             },
-            raw: true,
-         });
+            raw: true
+         })
 
          if (!user) {
             throw new Error("User is not registered");
@@ -113,7 +111,7 @@ module.exports = class UsersController {
                   [Op.gt]: new Date(),
                },
             },
-            raw: true,
+            raw: true
          });
 
          if (ban) {
@@ -128,19 +126,19 @@ module.exports = class UsersController {
             where: {
                user_id: user.user_id,
             },
-         });
+         })
 
          let attempt = await attempts.create({
             code: code,
-            user_id: user.user_id,
+            user_id: user.user_id
          });
 
-         console.log(code);
+         console.log(code)
 
          res.status(200).json({
             ok: true,
             message: "Code was sent",
-            codeValidationId: attempt.dataValues.attempt_id,
+            codeValidationId: attempt.attempt_id
          });
       } catch (e) {
          res.status(400).json({
@@ -152,7 +150,7 @@ module.exports = class UsersController {
 
    static async ValidateCode(req, res) {
       try {
-         const {users, attempts, sessions} = req.db;
+         const { users, attempts, sessions, bans } = req.db
 
          const code_validation_id = req.headers["code-validation-id"]
 
@@ -160,7 +158,7 @@ module.exports = class UsersController {
             throw new Error("Invalid code validation id");
          }
 
-         const {code} = await codeValidation.validateAsync(req.body)
+         const { code } = await codeValidation.validateAsync(req.body)
 
          const attempt = await attempts.findOne({
             where: {
@@ -171,7 +169,7 @@ module.exports = class UsersController {
                attributes: ["user_attempts"]
             },
             raw: true
-         });
+         })
 
          if (!attempt) throw new Error("Validation code is not found");
 
@@ -225,12 +223,12 @@ module.exports = class UsersController {
                      }
                   );
 
-                  await ban_model.create({
+                  await bans.create({
                      user_id: attempt.user_id,
                      expire_date: new Date(
                         Date.now() + Number(settings.ban_time)
-                     ),
-                  });
+                     )
+                  })
                }
             }
             throw new Error("Validation code is incorrect");

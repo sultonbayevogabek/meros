@@ -1,5 +1,6 @@
 import { selectOne, fetchFunction } from './_functions'
 import validateForm from './_validate-forms'
+import timer from './_timer'
 
 export default async function () {
    try {
@@ -45,13 +46,32 @@ export default async function () {
 
             let errorMessage
 
-            switch (response.message) {
-               case 'Error: invalid phone':
-                  errorMessage = 'Введен неправильный номер'
-                  break
-               case 'Error: User is not registered':
-                  errorMessage = 'Вы раньше не регистрировались. Пожалуйста, зарегистрируйтесь'
-                  break
+            if (response.message === 'Error: invalid phone') {
+               errorMessage = 'Введен неправильный номер'
+            }
+
+            if (response.message === 'Error: User is not registered') {
+               errorMessage = 'Вы раньше не регистрировались. Пожалуйста, зарегистрируйтесь'
+            }
+
+            if (response.message.indexOf('You have banned') !== -1) {
+               const deadline = new Date(response.message.substring(29))
+               const time = Math.floor((deadline - new Date()) / 1000)
+               if (!loginPhoneForm.firstElementChild.classList.contains('alert-danger')) {
+                  let alertDanger = document.createElement('div')
+                  alertDanger.classList.add('alert-danger')
+                  alertDanger.innerHTML = `
+                     <p>Пожалуйста, попробуйте еще раз после <time></time></p>
+                  `
+                  loginPhoneForm.prepend(alertDanger)
+                  timer('.alert-danger time', time)
+               } else {
+                  loginPhoneForm.firstElementChild.innerHTML = `
+                     <p>Пожалуйста, попробуйте еще раз после <time></time></p>
+                  `
+                  timer('.alert-danger time', time)
+               }
+               return 0
             }
 
             if (!loginPhoneForm.firstElementChild.classList.contains('alert-danger')) {
@@ -89,7 +109,9 @@ export default async function () {
 
             response = await response.json()
 
-            console.log(response)
+            if (response.ok) {
+               window.location.href = '/'
+            }
 
             if (!response.ok) {
                loginCodeSubmit.removeAttribute('data-loading')
@@ -97,11 +119,13 @@ export default async function () {
 
                let errorMessage
 
-               switch (response.message) {
-                  case 'Error: invalid code':
-                  case 'Error: Validation code is incorrect':
-                     errorMessage = 'Код неверный'
-                     break
+               if (response.message === 'Error: invalid code' || response.message === 'Error: Validation code is incorrect') {
+                  errorMessage = 'Код неверный'
+               } else if (response.message.indexOf('Validation code is not found') !== -1) {
+                  errorMessage = 'Много ошибочных попыток'
+                  setTimeout(() => {
+                     window.location.href = '/users/login'
+                  }, 2000)
                }
 
                if (!loginCodeForm.firstElementChild.classList.contains('alert-danger')) {

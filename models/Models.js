@@ -30,6 +30,10 @@ module.exports = class Models {
                 allowNull: false,
                 defaultValue: 0,
             },
+            avatar: {
+                type: Sequelize.DataTypes.STRING(120),
+                defaultValue: '/images/cabinet/user-img.png'
+            }
         });
     }
     static async Attempts(Sequelize, sequelize) {

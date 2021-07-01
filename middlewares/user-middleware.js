@@ -1,7 +1,7 @@
 const {verifyToken} = require("../modules/jwt");
 
 module.exports = async (req, res, next) => {
-   const {users, sessions} = req.db;
+   const { users, sessions } = req.db;
 
    const token = req.cookies["token"] || req.headers["Authorization"];
 
@@ -33,10 +33,10 @@ module.exports = async (req, res, next) => {
 
       req.user = {
          id: user.user_id,
-         name: user.name,
+         name: user.full_name,
          email: user.email,
-         phone: user.phone,
-         img: user.img
+         phone: user.phone_number,
+         avatar: user.avatar
       }
    }
 

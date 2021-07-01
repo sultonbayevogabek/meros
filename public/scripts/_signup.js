@@ -41,8 +41,10 @@ export default async function () {
                   break
                case 'Error: Invalid email':
                   errorMessage = 'Введен неправильный адрес электронной почты'
+                  break
                case 'Error: User has already been registered':
                   errorMessage = 'Вы уже зарегистрировались под этим номером. Пожалуйста, войдите'
+                  break
             }
 
             if (!signupForm.firstElementChild.classList.contains('alert-danger')) {
