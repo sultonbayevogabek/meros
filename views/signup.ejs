@@ -1,26 +1,31 @@
+<% var error, title %>
 <%- include('partials/header') %>
 
-<section class="auth-section register">
-    <div class="auth-card" id="phone_register">
+<section class="auth-section">
+    <div class="auth-card mb-30">
         <h2>Регистрация</h2>
-
-        <form class="auth__form" id="phone_register_form">
-            <label class="auth-label mb-10">
+        <form class="auth__form" id="signup-form">
+            <label class="auth-label">
                 <span>Телефон</span>
-                <input class="input" type="tel" id="user_phone" name="user_phone">
+                <input class="input" type="tel" id="phone" name="phone" placeholder="Пароль">
             </label>
-            <label class="auth-label-text mb-30">
-                Введите номер телефона чтобы получить код активации
+            <label class="auth-label">
+                <span>Имя</span>
+                <input class="input" type="text" id="name" name="name" placeholder="Имя" data-name="true">
+            </label>
+            <label class="auth-label">
+                <span>E-mail</span>
+                <input class="input" type="email" id="email" name="email" placeholder="E-mail">
             </label>
             <button class="button-blue" type="submit" disabled>
-                Получить код активации
+                Зарегистрироваться
                 <img class="loading-spinner" src="/images/icons/spinner.svg" alt="">
             </button>
         </form>
     </div>
     <div class="exists-account">
         <span>Есть аккаунт?</span>
-        <a href="/login">Войти</a>
+        <a href="/users/login">Войти</a>
     </div>
 </section>
 

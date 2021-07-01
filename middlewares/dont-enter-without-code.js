@@ -4,7 +4,7 @@ module.exports = async (req, res, next) => {
    const codeToken = req.cookies['code-token']
 
    if (!codeToken) {
-      return res.redirect('/signup')
+      return res.redirect('/users')
    }
 
    const { user_agent, phone, code } = verifyToken(codeToken)
@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
 
    if (!candidate || user_agent !== req.headers['user-agent']) {
       res.clearCookie('code-token')
-      return res.redirect('/signup')
+      return res.redirect('/users')
    }
 
    next()

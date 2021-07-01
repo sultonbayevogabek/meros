@@ -4817,10 +4817,10 @@ export default function maskPhoneInput () {
 
    })))
    
-   const elements = selectAll('#user_phone')
+   const elements = selectAll('#phone')
 
    const maskOptions = {
-      mask: '+{998} 00 000 00 00',
+      mask: '+{998}00 000 00 00',
       lazy: false,
       placeholderChar: ' '
    }

@@ -1,15 +1,27 @@
-const phoneValidation = require("../validations/phone-validation");
+const phoneValidation = require("../../validations/phone-validation");
 const fs = require("fs/promises");
 const path = require("path");
-const sendSms = require("../modules/send-sms");
-const generateCode = require("../modules/generate-code");
-const codeValidation = require("../validations/code-validation");
-const signupValidation = require("../validations/signup-validation");
-const { generateToken } = require("../modules/jwt");
+const sendSms = require("../../modules/send-sms");
+const generateCode = require("../../modules/generate-code");
+const codeValidation = require("../../validations/code-validation");
+const signupValidation = require("../../validations/signup-validation");
+const { generateToken } = require("../../modules/jwt");
 const { Op } = require("sequelize");
 const moment = require("moment");
 
 module.exports = class UsersController {
+    static async getSignUp(req, res) {
+        res.render('signup', {
+            title: 'Sign Up'
+        })
+    }
+
+    static async getLogin(req, res) {
+        res.render('login', {
+            title: 'Login'
+        })
+    }
+
     static async CheckPhone(req, res) {
         try {
             const { users } = req.db;
@@ -23,13 +35,13 @@ module.exports = class UsersController {
                 where: {
                     phone_number: phone,
                 },
-                raw: true,
-            });
+                raw: true
+            })
 
             res.status(200).json({
                 ok: true,
-                exists: user ? true : false,
-            });
+                exists: user ? true : false
+            })
         } catch (e) {
             res.status(400).json({
                 ok: false,
