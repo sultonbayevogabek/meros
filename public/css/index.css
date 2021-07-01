@@ -1121,7 +1121,7 @@ textarea:focus {
   margin-left: 10px;
 }
 
-.alert {
+.alert-danger {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1132,6 +1132,23 @@ textarea:focus {
   border: 1px solid #F83333;
   border-radius: 4px;
   background-color: rgba(248, 51, 51, 0.1);
+  font-family: "Roboto", sans-serif;
+  line-height: 20px;
+  color: #273142;
+  text-align: center;
+}
+
+.alert-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #3AC267;
+  border-radius: 4px;
+  background-color: rgba(58, 194, 103, 0.1);
   font-family: "Roboto", sans-serif;
   line-height: 20px;
   color: #273142;

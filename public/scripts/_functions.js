@@ -14,4 +14,15 @@ function removeClass(element, className) {
    element.classList.remove(className)
 }
 
-export { selectOne, selectAll, addClass, removeClass }
+async function fetchFunction(url, method, body) {
+   let response = await fetch(url, {
+      headers: {
+         'Content-Type': 'application/json; charset=utf-8'
+      },
+      method: method,
+      body: JSON.stringify(body)
+   })
+   return await response.json()
+}
+
+export { selectOne, selectAll, addClass, removeClass, fetchFunction }
