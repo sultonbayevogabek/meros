@@ -133,12 +133,11 @@ module.exports = class UsersController {
             user_id: user.user_id
          });
 
-         console.log(code)
-
          res.status(200).json({
             ok: true,
             message: "Code was sent",
-            codeValidationId: attempt.attempt_id
+            codeValidationId: attempt.attempt_id,
+            code
          });
       } catch (e) {
          res.status(400).json({
