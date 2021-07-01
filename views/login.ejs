@@ -2,21 +2,18 @@
 <%- include('partials/header') %>
 
 <section class="auth-section">
-    <div class="auth-card">
+    <div class="auth-card" id="login-card">
         <h2>Авторизация</h2>
-        <form class="auth__form">
+        <form class="auth__form" id="login-phone-form">
             <label class="auth-label">
                 <span>Телефон</span>
                 <input class="input" type="tel" id="phone" name="phone">
             </label>
-            <label class="auth-label">
-                <span>Пароль</span>
-                <input class="input" type="password" id="user_password" name="password" placeholder="Пароль">
-            </label>
-
-            <button class="button-blue" type="submit" disabled>Войти</button>
+            <button class="button-blue" type="submit" disabled>
+                Получить смс код
+                <img class="loading-spinner" src="/images/icons/spinner.svg" alt="loading spinner">
+            </button>
             <a class="button-outline" href="/users/signup">Зарегистрироваться</a>
-            <a class="forgot-password" href="/users/reset-password">Забыли пароль?</a>
         </form>
     </div>
 </section>

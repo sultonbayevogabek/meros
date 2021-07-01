@@ -5,7 +5,7 @@ const Models = require("../models/Models");
 const sequelize = new Sequelize(
     "postgres://postgres:123@localhost:5432/meros",
     {
-        logging: false,
+        logging: false
     }
 );
 
@@ -223,7 +223,7 @@ module.exports = async function () {
             },
         });
 
-        sequelize.sync({ force: false });
+        // await sequelize.sync({ force: true })
 
         return db;
     } catch (e) {

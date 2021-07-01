@@ -1,6 +1,9 @@
 const Joi = require('joi');
 
 module.exports = Joi.object({
+   phone: Joi.string()
+      .pattern(new RegExp('^998[389][01345789][0-9]{7}$'))
+      .error(Error('invalid phone')),
    name: Joi.string()
       .required()
       .min(3)
@@ -10,13 +13,5 @@ module.exports = Joi.object({
    email: Joi.string()
       .required()
       .email({minDomainSegments: 2, tlds: {allow: ['com', 'net', 'ru', 'uz']}})
-      .error(Error('Invalid email')),
-   password: Joi.string()
-      .required()
-      .min(6)
-      .error(Error('Invalid password')),
-   agreement: Joi.string()
-      .required()
-      .equal('on')
-      .error(Error('Invalid agreement'))
+      .error(Error('Invalid email'))
 })
