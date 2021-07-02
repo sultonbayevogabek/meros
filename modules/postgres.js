@@ -2,13 +2,10 @@ const { Sequelize } = require("sequelize");
 
 const Models = require("../models/Models");
 
-const sequelize = new Sequelize(
-    // "postgres://postgres:123@localhost:5432/meros",
-    "postgres://wccqxinj:G8x2RtkZcByxUkcx3OL0D0Z_DcufEdgh@batyr.db.elephantsql.com/wccqxinj",
-    {
+const sequelize = new Sequelize("postgres://wccqxinj:G8x2RtkZcByxUkcx3OL0D0Z_DcufEdgh@batyr.db.elephantsql.com/wccqxinj", {
         logging: false
     }
-);
+)
 
 module.exports = async function () {
     try {
@@ -34,6 +31,7 @@ module.exports = async function () {
         db.wishlists = await Models.WishLists(Sequelize, sequelize);
         db.order_details = await Models.OrderDetails(Sequelize, sequelize);
         db.product_brands = await Models.ProductBrands(Sequelize, sequelize);
+        db.admin = await Models.Admin(Sequelize, sequelize)
 
         await db.users.hasOne(db.attempts, {
             foreignKey: {
@@ -223,11 +221,24 @@ module.exports = async function () {
                 allowNull: false,
             },
         });
+        //
+        // let admin = await db.admin.create({
+        //     name: `Og'abek`,
+        //     login: 'meros_admin',
+        //     phone: '998999639773',
+        //     email: 'admin@meros.com',
+        //     password: 'meros_admin1999',
+        //     img: 'https://picsum.photos/300',
+        //     user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        //     super_admin: true
+        // })
+        //
+        // console.log(admin)
 
         // await sequelize.sync({ force: true })
 
         return db;
     } catch (e) {
-        console.log(e);
+        console.log(e + "");
     }
 };

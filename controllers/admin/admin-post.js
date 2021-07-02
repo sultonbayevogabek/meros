@@ -33,7 +33,7 @@ const adminLoginPost = async (req, res) => {
 
       res.cookie('admin-token', adminToken).redirect('/admin')
    } catch (err) {
-      res.render('admin/admin-login', {
+      res.render('admin/login', {
          title: 'Admin Login',
          error: err + ''
       })
