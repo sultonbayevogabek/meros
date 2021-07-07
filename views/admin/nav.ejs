@@ -1,0 +1,37 @@
+<% var path %>
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link <%= path === '/' ? 'active' : '' %>" aria-current="page" href="/admin">
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= path === '/orders' ? 'active' : '' %>" href="/admin/orders">
+                    Orders
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= path === '/brands' ? 'active' : '' %>" href="/admin/brands">
+                    Brands
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= path === '/categories' ? 'active' : '' %>" href="/admin/categories">
+                    Categories
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= path === '/products' ? 'active' : '' %>" href="/admin/products">
+                    Products
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= path === '/customers' ? 'active' : '' %>" href="/admin/customers">
+                    Customers
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

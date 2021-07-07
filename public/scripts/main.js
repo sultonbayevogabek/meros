@@ -1,6 +1,5 @@
 'use strict'
 
-import zoomEffect from './zoom-effect'
 import cabinetDropdown from './_cabinet-dropdown'
 import searchInput from './_search-input'
 import catalogModal from './_catalog-modal'
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
    categoriesModal()
    selectElement()
    searchInput()
-   zoomEffect()
    feedbackRating()
    categoriesMenu()
    filterModal()

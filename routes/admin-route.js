@@ -6,7 +6,9 @@ const {
    adminExit,
    adminOrdersGet,
    adminProductsGet,
-   adminCustomersGet
+   adminCustomersGet,
+   adminCategoriesGet,
+   adminBrandsGet
 } = require('../controllers/admin/admin-get')
 const { adminLoginPost } = require('../controllers/admin/admin-post')
 
@@ -26,6 +28,10 @@ router.get('/orders', dontEnterAuthorized, adminOrdersGet)
 router.get('/products', dontEnterAuthorized, adminProductsGet)
 
 router.get('/customers', dontEnterAuthorized, adminCustomersGet)
+
+router.get('/categories', dontEnterAuthorized, adminCategoriesGet)
+
+router.get('/brands', dontEnterAuthorized, adminBrandsGet)
 
 module.exports = {
    path: '/admin',
