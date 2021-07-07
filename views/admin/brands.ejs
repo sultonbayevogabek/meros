@@ -1,0 +1,268 @@
+<%- include('header') %>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Meros</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search brands" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/admin/exit">Sign out</a>
+        </li>
+    </ul>
+</header>
+<div class="container-fluid">
+    <div class="row">
+        <%- include('nav') %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Brands</h1>
+                <div class="d-flex">
+                    <span class="me-3">Filter:</span>
+                    <button class="btn btn-outline-secondary me-1">A-Z</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card p-2">
+                        <form>
+                            <label class="d-block mb-2">
+                                <span>Brand logo(<b>.png or .jpg</b>)</span>
+                                <input class="form-control" type="file" accept="image/png, image/jpeg" required>
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Brand name</span>
+                                <input class="form-control" type="text" required minlength="3" placeholder="Brand name">
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Brand web-site URL</span>
+                                <input class="form-control" type="url" required placeholder="Brand web-site URL">
+                            </label>
+                            <button class="btn btn-outline-primary">Add new brand</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Brand name</th>
+                            <th>Brand logo</th>
+                            <th>Brand web-site URL</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Adidas</td>
+                            <td>
+                                <img src="/images/logos/3.png" alt="">
+                            </td>
+                            <td>
+                                <a href="#">https://sharq.uz</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<%- include('footer') %>

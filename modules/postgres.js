@@ -2,7 +2,8 @@ const { Sequelize } = require("sequelize");
 
 const Models = require("../models/Models");
 
-const sequelize = new Sequelize("postgres://wccqxinj:G8x2RtkZcByxUkcx3OL0D0Z_DcufEdgh@batyr.db.elephantsql.com/wccqxinj", {
+const dbConnection = "postgres://wccqxinj:G8x2RtkZcByxUkcx3OL0D0Z_DcufEdgh@batyr.db.elephantsql.com/wccqxinj"
+const sequelize = new Sequelize('postgres://postgres:123@localhost:5432/meros', {
         logging: false
     }
 )
@@ -234,7 +235,7 @@ module.exports = async function () {
         // })
         //
         // console.log(admin)
-
+        //
         // await sequelize.sync({ force: true })
 
         return db;

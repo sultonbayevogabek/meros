@@ -1,7 +1,8 @@
 const adminGet = async (req, res) => {
    res.render('admin/dashboard', {
       title: 'Admin Panel',
-      admin: req.admin
+      admin: req.admin,
+      path: '/'
    })
 }
 
@@ -16,20 +17,37 @@ const adminExit = async (req, res) => {
 }
 
 const adminOrdersGet = async (req, res) => {
-   res.render('admin/order', {
-      title: 'Orders'
+   res.render('admin/orders', {
+      title: 'Orders',
+      path: '/orders'
    })
 }
 
 const adminProductsGet = async (req, res) => {
    res.render('admin/products', {
-      title: 'Products'
+      title: 'Products',
+      path: '/products'
+   })
+}
+
+const adminBrandsGet = async (req, res) => {
+   res.render('admin/brands', {
+      title: 'Brands',
+      path: '/brands'
+   })
+}
+
+const adminCategoriesGet = async (req, res) => {
+   res.render('admin/categories', {
+      title: 'Categories',
+      path: '/categories'
    })
 }
 
 const adminCustomersGet = async (req, res) => {
    res.render('admin/customers', {
-      title: 'Customers'
+      title: 'Customers',
+      path: '/customers'
    })
 }
 
@@ -39,5 +57,7 @@ module.exports = {
    adminExit,
    adminOrdersGet,
    adminProductsGet,
-   adminCustomersGet
+   adminCustomersGet,
+   adminBrandsGet,
+   adminCategoriesGet
 }
