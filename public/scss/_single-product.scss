@@ -308,13 +308,14 @@
 .buyers-images {
    display: flex;
    align-items: flex-start;
-   flex-wrap: wrap;
+   overflow: auto;
 }
 
 .buyers-images__item {
    display: flex;
    align-items: center;
    justify-content: center;
+   flex-shrink: 0;
    width: 100px;
    height: 100px;
    margin-right: 10px;
@@ -392,23 +393,6 @@
 .comment__state {
    display: flex;
    align-items: center;
-}
-
-.comment__button {
-   margin-right: 25px;
-   padding: 0;
-   background-color: transparent;
-   font-family: "Roboto", sans-serif;
-   font-weight: 400;
-   font-size: 14px;
-   line-height: 16px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
-   color: #32386B;
-   cursor: pointer;
-
-   &:hover {
-      color: $primary-yellow-color;
-   }
 }
 
 .comment__time {

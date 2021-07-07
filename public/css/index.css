@@ -4386,13 +4386,14 @@ input:checked + .slider:before {
 .buyers-images {
   display: flex;
   align-items: flex-start;
-  flex-wrap: wrap;
+  overflow: auto;
 }
 
 .buyers-images__item {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 100px;
   height: 100px;
   margin-right: 10px;
@@ -4469,22 +4470,6 @@ input:checked + .slider:before {
 .comment__state {
   display: flex;
   align-items: center;
-}
-
-.comment__button {
-  margin-right: 25px;
-  padding: 0;
-  background-color: transparent;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
-  color: #32386B;
-  cursor: pointer;
-}
-.comment__button:hover {
-  color: #F5921C;
 }
 
 .comment__time {
@@ -5362,6 +5347,17 @@ li[data-thumb] img {
     width: auto;
   }
 }
+@media only screen and (max-width: 1260px) {
+  .reviews__right {
+    order: -1;
+    width: 100%;
+  }
+
+  .reviews__left {
+    width: 100%;
+    max-width: 100%;
+  }
+}
 @media only screen and (max-width: 1155px) {
   .product-info {
     width: 100%;
@@ -5386,7 +5382,8 @@ li[data-thumb] img {
     grid-gap: 20px;
   }
 
-  .products--four, .products--five {
+  .products--four,
+.products--five {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -5438,7 +5435,8 @@ li[data-thumb] img {
   }
 }
 @media only screen and (max-width: 850px) {
-  .products--five, .products--four {
+  .products--five,
+.products--four {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
   }
@@ -5754,7 +5752,8 @@ li[data-thumb] img {
     display: none;
   }
 
-  .products--four, .products--five {
+  .products--four,
+.products--five {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -5783,7 +5782,8 @@ li[data-thumb] img {
     width: 100% !important;
   }
 
-  .product-info h2, .product-description h2 {
+  .product-info h2,
+.product-description h2 {
     margin-bottom: 10px;
     font-size: 18px;
     line-height: 21px;
@@ -5850,9 +5850,47 @@ li[data-thumb] img {
     margin-right: 0 !important;
   }
 
-  .product-description p, .product-description__subinfo {
+  .product-description p,
+.product-description__subinfo {
     font-size: 14px;
     line-height: 16px;
+  }
+
+  .reviews__right .button-blue {
+    height: 45px;
+  }
+
+  .buyers-images__item {
+    width: 70px;
+    height: 70px;
+    margin-right: 7px;
+  }
+
+  .reviews__left__header {
+    padding-bottom: 15px;
+  }
+
+  .comment__owner-name {
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .comment__owner-image {
+    margin-right: 5px;
+  }
+
+  .comment__text {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .comments__item {
+    margin-bottom: 20px;
+  }
+
+  .show-more-views {
+    margin-bottom: 50px;
   }
 }
 @media only screen and (max-width: 500px) {

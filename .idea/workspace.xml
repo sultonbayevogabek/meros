@@ -21,29 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7651015b-46ce-43da-9dc8-03bbb6c8b4ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/admin/admin-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/admin/admin-get.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/postgres.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/postgres.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/underscore.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/dashboard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/splide.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/splide.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/zoom-effect.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_media.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_media.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_single-product.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_single-product.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin-route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/customers.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/customers.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/dashboard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/dashboard.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/login.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/order.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/orders.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/products.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/products.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/footer.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/single-product.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/single-product.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +108,7 @@
       <workItem from="1625546578552" duration="2037000" />
       <workItem from="1625592760932" duration="285000" />
       <workItem from="1625640944379" duration="1275000" />
-      <workItem from="1625653628822" duration="13492000" />
+      <workItem from="1625653628822" duration="17614000" />
     </task>
     <servers />
   </component>
