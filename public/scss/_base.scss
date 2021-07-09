@@ -53,6 +53,31 @@ textarea:focus {
    outline: none;
 }
 
+button:hover {
+   cursor: pointer;
+}
+
+button[disabled], button[disabled]:hover {
+   background-color: #666666 !important;
+   cursor: not-allowed !important;
+}
+
+.red-on-hover {
+   transition: 0.2s all ease;
+
+   &:hover {
+      background-color: #F83333;
+   }
+}
+
+.yellow-on-hover {
+   transition: 0.2s all ease;
+
+   &:hover {
+      background-color: #F5921C;
+   }
+}
+
 .container {
    max-width: 1460px;
    margin: 0 auto;
@@ -88,7 +113,7 @@ textarea:focus {
    font-weight: 700;
    font-size: 28px;
    line-height: 33px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'salt' on, 'ss02' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'salt'on, 'ss02'on, 'liga'off;
    color: $primary-text-color;
 }
 
@@ -102,7 +127,7 @@ textarea:focus {
    font-weight: 700;
    font-size: 24px;
    line-height: 28px;
-   font-feature-settings: 'pnum' on, 'lnum' on;
+   font-feature-settings: 'pnum'on, 'lnum'on;
    color: $primary-blue-color;
 }
 
@@ -202,7 +227,7 @@ textarea:focus {
    font-size: 18px;
    line-height: 21px;
    text-align: center;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: #FFFFFF;
    cursor: pointer;
 
@@ -261,5 +286,5 @@ textarea:focus {
 
 .splide .product-card {
    width: 100%;
-   margin-right: 0!important;
+   margin-right: 0 !important;
 }

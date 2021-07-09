@@ -107,7 +107,6 @@
 .delete-button {
    padding: 0;
    background-color: transparent;
-   cursor: pointer;
    font-family: "Roboto", sans-serif;
    font-weight: 400;
    font-size: 18px;
@@ -178,7 +177,6 @@
       border-radius: 2.97247px;
       font-size: 20px;
       color: #8D909B;
-      cursor: pointer;
    }
 
    span {
@@ -196,7 +194,6 @@
    margin-left: auto;
    padding: 0;
    background-color: transparent;
-   cursor: pointer;
 
    img {
       vertical-align: middle;
@@ -242,7 +239,6 @@
    line-height: 16px;
    font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
    color: #8D909B;
-   cursor: pointer;
 
    svg {
       margin-right: 10px;
@@ -364,50 +360,4 @@
       font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
       color: #FFFFFF;
    }
-
-   button {
-      cursor: pointer;
-   }
-}
-
-.modal-content {
-   position: relative;
-   width: 590px;
-   padding: 50px 100px;
-   background-color: #ffffff;
-   border-radius: 4px;
-   text-align: center;
-
-   h3 {
-      margin-bottom: 20px;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 28px;
-      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
-      color: #273142;
-   }
-
-   p {
-      margin-bottom: 50px;
-      font-family: "Roboto", sans-serif;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 21px;
-      text-align: center;
-      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
-      color: #666666;
-   }
-
-   .button-blue-sm {
-      margin: 0 auto;
-   }
-}
-
-.modal-close {
-   position: absolute;
-   top: 30px;
-   right: 30px;
-   padding: 0;
-   background-color: transparent;
-   cursor: pointer;
 }
