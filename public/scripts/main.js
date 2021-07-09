@@ -14,6 +14,7 @@ import loader from './_loader'
 import rangeSlider from './_range-slider'
 import signup from './_signup'
 import login from './_login'
+import maskCard from './_mask-card'
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -30,4 +31,5 @@ document.addEventListener('DOMContentLoaded', () => {
    rangeSlider()
    signup()
    login()
+   maskCard()
 })

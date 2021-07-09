@@ -151,7 +151,6 @@
    padding: 0;
    background-color: transparent;
    text-align: left;
-   cursor: pointer;
    font-weight: 500;
    font-size: 18px;
    line-height: 21px;
@@ -172,7 +171,6 @@
    line-height: 19px;
    font-feature-settings: 'pnum' on, 'lnum' on;
    color: #8D909B;
-   cursor: pointer;
 }
 
 .filter-aside__switch-wrapper {
@@ -384,14 +382,12 @@
    line-height: 19px;
    font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
    color: #8D909B;
-   cursor: pointer;
 }
 
 .filter-btn {
    display: none;
    height: 40px;
    background-color: #fff;
-   cursor: pointer;
 }
 
 .filter__header {

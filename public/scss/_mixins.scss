@@ -3,3 +3,10 @@
       @content;
    }
 }
+
+@mixin modal-content($width) {
+   width: $width;
+   background-color: #ffffff;
+   padding: 50px;
+   border-radius: 4px;
+}

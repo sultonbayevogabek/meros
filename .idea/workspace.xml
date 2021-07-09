@@ -20,12 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7651015b-46ce-43da-9dc8-03bbb6c8b4ad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/cabinet/cabinet.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Aser.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Aser.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/cabinet/cabinet-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cabinet/cabinet-get.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/cabinet/humo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/cabinet/uzcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/cabinet/uzcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_auth.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_auth.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_base.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_books.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_books.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_cabinet.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_cabinet.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_cart.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_cart.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_feedback-modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_feedback-modal.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_header.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_media.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_media.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_mixins.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_popular-categories.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_popular-categories.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_product-info-modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_product-info-modal.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_products.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_products.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/_single-product.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_single-product.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/single-product.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/single-product.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/cabinet-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/cabinet-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/cabinet.ejs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,21 +66,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/scripts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/cabinet" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\WEB ISHLANMALARIM\meros\controllers\signup" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WEB ISHLANMALARIM\meros\views\cabinet" />
       <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
       <recent name="D:\WEB ISHLANMALARIM\meros\public\images\single-product" />
       <recent name="D:\WEB ISHLANMALARIM\meros\public\css" />
       <recent name="D:\WEB ISHLANMALARIM\meros\views\admin" />
-      <recent name="D:\WEB ISHLANMALARIM\meros" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WEB ISHLANMALARIM\meros\views\cabinet" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\controllers\signup" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -109,6 +129,11 @@
       <workItem from="1625592760932" duration="285000" />
       <workItem from="1625640944379" duration="1275000" />
       <workItem from="1625653628822" duration="17614000" />
+      <workItem from="1625715150389" duration="1660000" />
+      <workItem from="1625720945765" duration="8988000" />
+      <workItem from="1625744372026" duration="753000" />
+      <workItem from="1625767488493" duration="18000" />
+      <workItem from="1625810147829" duration="1242000" />
     </task>
     <servers />
   </component>

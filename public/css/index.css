@@ -54,6 +54,29 @@ textarea:focus {
   outline: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
+button[disabled], button[disabled]:hover {
+  background-color: #666666 !important;
+  cursor: not-allowed !important;
+}
+
+.red-on-hover {
+  transition: 0.2s all ease;
+}
+.red-on-hover:hover {
+  background-color: #F83333;
+}
+
+.yellow-on-hover {
+  transition: 0.2s all ease;
+}
+.yellow-on-hover:hover {
+  background-color: #F5921C;
+}
+
 .container {
   max-width: 1460px;
   margin: 0 auto;
@@ -360,7 +383,6 @@ textarea:focus {
   padding-left: 24px;
   border-radius: 5px;
   background-color: #32386B;
-  cursor: pointer;
 }
 .catalog-btn img {
   margin-right: 10px;
@@ -455,7 +477,6 @@ textarea:focus {
   background-color: #F4F7F8;
   border-top: 1px solid #E8EDF1;
   border-bottom: 1px solid #E8EDF1;
-  cursor: pointer;
 }
 .category-btn span {
   margin-right: 18px;
@@ -682,7 +703,6 @@ textarea:focus {
   margin-right: 10px;
   padding-left: 0;
   background-color: transparent;
-  cursor: pointer;
 }
 
 .categories-menu {
@@ -723,7 +743,6 @@ textarea:focus {
   right: 10px;
   padding: 0;
   background-color: transparent;
-  cursor: pointer;
 }
 
 .categories-menu__title {
@@ -998,15 +1017,10 @@ textarea:focus {
   line-height: 21px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #FFFFFF;
-  cursor: pointer;
   transition: 0.2s all ease;
 }
 .button-blue:hover {
   background-color: #F5921C;
-}
-.button-blue[disabled] {
-  background-color: #666666;
-  cursor: not-allowed;
 }
 .button-blue[data-loading] .loading-spinner {
   display: block;
@@ -1027,7 +1041,6 @@ textarea:focus {
   line-height: 21px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #666666;
-  cursor: pointer;
 }
 .button-outline:hover {
   color: #273142;
@@ -1045,7 +1058,6 @@ textarea:focus {
   font-size: 18px;
   line-height: 21px;
   color: #8D909B;
-  cursor: pointer;
 }
 
 .forgot-password {
@@ -1295,6 +1307,9 @@ textarea:focus {
   position: relative;
   height: 120px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cabinet__profile__img__wrapper div {
   position: absolute;
@@ -1330,20 +1345,7 @@ textarea:focus {
   padding-bottom: 15px;
 }
 
-.cabinet__edit {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  font-feature-settings: "pnum" on, "lnum" on;
-  color: #114FEF;
-  margin-bottom: 30px;
-}
-.cabinet__edit:hover, .cabinet__edit.active {
-  color: #F5921C;
-}
-
-.cabinet__sidebar__header {
+.cabinet__sidebar__heading {
   margin-bottom: 18px;
 }
 
@@ -1650,7 +1652,6 @@ textarea:focus {
   line-height: 19px;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #114FEF;
-  cursor: pointer;
   background-color: transparent;
   padding: 0;
   margin-bottom: 25px;
@@ -1800,7 +1801,8 @@ input:checked + .slider:before {
   background-position: center;
 }
 
-.select-items div, .select-selected {
+.select-items div,
+.select-selected {
   width: 100%;
   height: 49px;
   padding: 15px 20px !important;
@@ -1835,7 +1837,8 @@ input:checked + .slider:before {
   display: none;
 }
 
-.select-items div:hover, .same-as-selected {
+.select-items div:hover,
+.same-as-selected {
   background-color: #F4F7F8;
 }
 
@@ -1850,7 +1853,9 @@ input:checked + .slider:before {
   color: #273142;
   border-radius: 4px;
 }
-.ans-abo-products__box .select-selected, .ans-abo-products__box .select-items div, .ans-abo-products__box .select-selected,
+.ans-abo-products__box .select-selected,
+.ans-abo-products__box .select-items div,
+.ans-abo-products__box .select-selected,
 .que-abo-products__box .select-selected,
 .que-abo-products__box .select-items div,
 .que-abo-products__box .select-selected,
@@ -1887,7 +1892,9 @@ input:checked + .slider:before {
 .main--message .select-selected {
   background-color: #fff;
 }
-.main--message .select-selected, .main--message .select-items div, .main--message .select-selected {
+.main--message .select-selected,
+.main--message .select-items div,
+.main--message .select-selected {
   padding: 10px 15px !important;
 }
 
@@ -1946,7 +1953,8 @@ input:checked + .slider:before {
   border-radius: 4px;
   margin-bottom: 50px;
 }
-.order-card__item h3, .order-card__item .cost-order {
+.order-card__item h3,
+.order-card__item .cost-order {
   font-weight: 700;
   font-size: 24px;
   line-height: 28px;
@@ -2222,62 +2230,52 @@ input:checked + .slider:before {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #27314266;
+  background: rgba(39, 49, 66, 0.4);
   overflow: auto;
 }
 
-.modal__content {
-  background-color: #fff;
+.modal-content h2 {
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 33px;
+  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+  color: #000000;
+}
+
+.modal--change-avatar .modal-content {
+  width: 590px;
+  background-color: #ffffff;
   padding: 50px;
   border-radius: 4px;
 }
 
-.profile-img__modal {
-  width: 590px;
+.modal-form--change-avatar {
+  display: grid;
+  grid-template-columns: 320px 120px;
+  grid-column-gap: 50px;
 }
 
-.card__modal {
-  width: 640px;
-}
-
-.modal__body {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.modal__left {
-  width: 320px;
-}
-
-.profile-img__form .open-link__label, .profile-img__form span {
+.modal-form__label {
   display: block;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.modal-form__label-text {
+  display: block;
+  margin-bottom: 10px;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #8D909B;
-  margin-bottom: 15px;
-}
-.profile-img__form .open-link__label {
-  margin-bottom: 10px;
-}
-.profile-img__form input {
-  width: 100%;
-  padding-left: 21px;
-  height: 45px;
-  border: 1px solid #D2D2D2;
-  border-radius: 4px;
-  margin-bottom: 10px;
 }
 
-.open-file__label,
-#source-img__link {
+.modal-form__label-rect {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  width: 320px;
   height: 45px;
   border: 1px solid #D2D2D2;
   border-radius: 4px;
@@ -2286,118 +2284,93 @@ input:checked + .slider:before {
   line-height: 21px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #8D909B;
-  margin-bottom: 25px;
 }
 
-#source-img__link {
+.modal-form__url-input {
+  display: block;
+  width: 100%;
+  height: 45px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #D2D2D2;
+  border-radius: 4px;
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+  color: #8D909B;
 }
 
-.open-file__input {
-  display: none;
-}
-
-.modal__documentation {
+.modal-form__prompt-text {
+  display: block;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #D2D2D2;
-  margin-bottom: 25px;
 }
 
-.modal__buttons__wrapper {
+.modal-form__user-avatar {
   display: flex;
-}
-.modal__buttons__wrapper button {
-  height: 36px;
-  width: 100px;
-  margin-right: 19px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 16px;
-}
-.modal__buttons__wrapper button:first-of-type:disabled {
-  background: #8D909B;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
 }
 
-.modal__img__wrapper {
-  text-align: center;
-}
-
-.modal__img {
-  margin-bottom: 30px;
-}
-
-.delete-img__btn {
-  display: none;
+.modal-form__remove-avatar {
+  display: block;
+  width: 100%;
+  background-color: transparent;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #F83333;
-  cursor: pointer;
-  background-color: transparent;
-  margin: 0 auto;
 }
 
-.card__form {
-  width: 100%;
-}
-.card__form .row {
-  justify-content: flex-end;
-  align-items: center;
-}
-.card__form button {
-  width: 140px;
-  height: 50px;
+.modal-form__btns {
+  display: flex;
 }
 
-.payment-system__list {
+.modal--add-card .modal-content {
+  width: 640px;
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 4px;
+}
+
+.payment-systems__list {
   display: flex;
   align-items: center;
-  margin-bottom: 26px;
+  margin-bottom: 25px;
 }
 
 .payment-system__item {
-  margin-right: 28px;
-}
-.payment-system__item img {
-  transition: all 0.1s ease;
-}
-.payment-system__item label {
-  cursor: pointer;
-}
-.payment-system__item input {
-  display: none;
-}
-.payment-system__item input:checked + label img {
-  transform: scale(1.1);
+  margin-right: 25px;
 }
 
-.card__registration {
-  display: flex;
-  align-items: flex-start;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #E8EDF1;
+.bank-card {
+  display: grid;
+  grid-template-columns: 400px 140px;
   margin-bottom: 30px;
-}
-.card__registration label {
-  display: block;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
-  color: #8D909B;
-}
-.card__registration input {
-  margin-top: 10px;
-  height: 40px;
-  border: 1px solid #D2D2D2;
   border-radius: 4px;
+  overflow: hidden;
+}
+
+.bank-card__left {
+  padding: 30px 30px 20px;
+  background-color: #F4F7F8;
+}
+
+.bank-card__card-number {
+  height: 40px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -2405,77 +2378,109 @@ input:checked + .slider:before {
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #273142;
 }
-.card__registration input:focus {
-  border-color: #F5921C;
-}
-.card__registration input::placeholder {
+.bank-card__card-number::placeholder {
   color: #D2D2D2;
-  opacity: 1;
 }
 
-.required-info__wrapper {
-  width: 400px;
-  padding: 30px 30px 20px 30px;
-  background: #F4F7F8;
-  border-radius: 4px;
-}
-.required-info__wrapper .card-number__input {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 0 20px;
-}
-
-.valid-until__wrapper input {
-  width: 57px;
-}
-.valid-until__wrapper input:first-of-type {
-  padding: 0 15px;
-  margin-right: 20px;
-}
-.valid-until__wrapper input:last-of-type {
-  padding: 0 20px;
-}
-
-.extra__info__wrapper {
-  position: relative;
+.bank-card__validity-period {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 140px;
-  height: 208px;
-  background: #E8EDF1;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+}
+
+.bank-card__validity-input {
+  width: 57.5px;
+  height: 40px;
+  margin-right: 20px;
   padding-left: 15px;
-  padding-bottom: 20px;
+  padding-right: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+  color: #273142;
 }
-.extra__info__wrapper input {
-  width: 70px;
-  padding: 0 15px;
+.bank-card__validity-input::placeholder {
+  color: #D2D2D2;
 }
-.extra__info__wrapper::after {
-  content: "";
+
+.bank-card__right {
+  position: relative;
+  padding: 120px 15px 20px;
+  background: #E8EDF1;
+}
+
+.bank-card__decoration {
   position: absolute;
   top: 30px;
+  left: 0;
   right: 0;
-  width: 100%;
   height: 40px;
-  background-color: #D2D2D2;
+  background: #D2D2D2;
 }
 
-.card__form__cancel__btn {
+.bank-card__cvv-input {
+  width: 70px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+  color: #273142;
+}
+.bank-card__cvv-input::placeholder {
+  color: #D2D2D2;
+}
+
+.modal-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 30px;
+  border-top: 1px solid #E8EDF1;
+}
+
+.modal-form__action-btn {
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+}
+
+.modal-form__action-btn--cancel {
+  height: 50px;
   margin-right: 20px;
-  background-color: transparent;
   color: #8D909B;
   border: 1px solid #8D909B;
-}
-.card__form__cancel__btn:hover {
   background-color: transparent;
-  border-width: 1px;
 }
 
-.main--save-card button {
-  cursor: pointer;
+.modal-form__action-btn--bind {
+  color: #ffffff;
+  background-color: #32386B;
+}
+
+.modal-form__btn {
+  height: 36px;
+  margin-right: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+  color: #FFFFFF;
+}
+.modal-form__btn--cancel {
+  background-color: #8D909B;
+}
+.modal-form__btn--save {
+  background-color: #32386B;
 }
 
 .my-card__item {
@@ -2669,7 +2674,6 @@ input:checked + .slider:before {
   height: 35px;
   background-color: #666666;
   border-radius: 4px;
-  cursor: pointer;
 }
 .product-card__action__item button:hover {
   background-color: #32386B;
@@ -2685,7 +2689,6 @@ input:checked + .slider:before {
   display: none;
   padding: 0;
   background-color: transparent;
-  cursor: pointer;
 }
 
 .additional {
@@ -2814,7 +2817,6 @@ input:checked + .slider:before {
   font-size: 18px;
   line-height: 21px;
   color: #FFFFFF;
-  cursor: pointer;
   transition: 0.2s all ease;
 }
 .to-cart:hover, .to-cart-mobile:hover {
@@ -3167,7 +3169,6 @@ input:checked + .slider:before {
 .delete-button {
   padding: 0;
   background-color: transparent;
-  cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -3236,7 +3237,6 @@ input:checked + .slider:before {
   border-radius: 2.97247px;
   font-size: 20px;
   color: #8D909B;
-  cursor: pointer;
 }
 .cart__products__info__count span {
   margin: 0 10px;
@@ -3252,7 +3252,6 @@ input:checked + .slider:before {
   margin-left: auto;
   padding: 0;
   background-color: transparent;
-  cursor: pointer;
 }
 .cart__products__info__delete img {
   vertical-align: middle;
@@ -3295,7 +3294,6 @@ input:checked + .slider:before {
   line-height: 16px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #8D909B;
-  cursor: pointer;
 }
 .cart__products__info__favourite svg {
   margin-right: 10px;
@@ -3406,48 +3404,6 @@ input:checked + .slider:before {
   line-height: 14px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #FFFFFF;
-}
-.cart__products__info__select button {
-  cursor: pointer;
-}
-
-.modal-content {
-  position: relative;
-  width: 590px;
-  padding: 50px 100px;
-  background-color: #ffffff;
-  border-radius: 4px;
-  text-align: center;
-}
-.modal-content h3 {
-  margin-bottom: 20px;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 28px;
-  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
-  color: #273142;
-}
-.modal-content p {
-  margin-bottom: 50px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
-  text-align: center;
-  font-feature-settings: "pnum" on, "lnum" on, "liga" off;
-  color: #666666;
-}
-.modal-content .button-blue-sm {
-  margin: 0 auto;
-}
-
-.modal-close {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  padding: 0;
-  background-color: transparent;
-  cursor: pointer;
 }
 
 .checkout {
@@ -3796,7 +3752,6 @@ input:checked + .slider:before {
   padding: 0;
   background-color: transparent;
   text-align: left;
-  cursor: pointer;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
@@ -3817,7 +3772,6 @@ input:checked + .slider:before {
   line-height: 19px;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #8D909B;
-  cursor: pointer;
 }
 
 .filter-aside__switch-wrapper {
@@ -4024,14 +3978,12 @@ input:checked + .slider:before {
   line-height: 19px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #8D909B;
-  cursor: pointer;
 }
 
 .filter-btn {
   display: none;
   height: 40px;
   background-color: #fff;
-  cursor: pointer;
 }
 
 .filter__header {
@@ -4244,7 +4196,6 @@ input:checked + .slider:before {
   height: 34px;
   background-color: #F4F7F8;
   border-radius: 4px;
-  cursor: pointer;
 }
 .product-count__change span {
   margin: 0 15px;
@@ -4298,7 +4249,6 @@ input:checked + .slider:before {
   align-items: center;
   padding: 0;
   background-color: transparent;
-  cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -4470,10 +4420,10 @@ input:checked + .slider:before {
 .comment__state {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .comment__time {
-  margin-right: 150px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -4503,7 +4453,6 @@ input:checked + .slider:before {
   line-height: 16px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #8D909B;
-  cursor: pointer;
 }
 .comment__like svg,
 .comment__dislike svg {
@@ -4556,7 +4505,6 @@ input:checked + .slider:before {
   line-height: 23px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #114FEF;
-  cursor: pointer;
 }
 
 .product-gallery {
@@ -4670,7 +4618,6 @@ li[data-thumb] img {
   right: 30px;
   padding: 0;
   background-color: transparent;
-  cursor: pointer;
 }
 
 .feedback-modal__heading {
@@ -4788,7 +4735,6 @@ li[data-thumb] img {
   line-height: 21px;
   font-feature-settings: "pnum" on, "lnum" on, "liga" off;
   color: #FFFFFF;
-  cursor: pointer;
 }
 .feedback-modal__submit:hover {
   background-color: #F5921C;
@@ -4808,7 +4754,6 @@ li[data-thumb] img {
   right: 40px;
   padding: 0;
   background-color: transparent;
-  cursor: pointer;
 }
 
 .product-info-modal__gallery {
@@ -5877,6 +5822,8 @@ li[data-thumb] img {
   }
 
   .comment__owner-image {
+    width: 37px;
+    height: 37px;
     margin-right: 5px;
   }
 
@@ -5891,6 +5838,10 @@ li[data-thumb] img {
 
   .show-more-views {
     margin-bottom: 50px;
+  }
+  .show-more-views button {
+    font-size: 14px;
+    line-height: 16px;
   }
 }
 @media only screen and (max-width: 500px) {

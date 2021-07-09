@@ -807,6 +807,8 @@
    }
 
    .comment__owner-image {
+      width: 37px;
+      height: 37px;
       margin-right: 5px;
    }
 
@@ -821,6 +823,11 @@
 
    .show-more-views {
       margin-bottom: 50px;
+
+      button {
+         font-size: 14px;
+         line-height: 16px;
+      }
    }
 }
 
