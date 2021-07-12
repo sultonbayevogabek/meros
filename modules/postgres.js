@@ -1,12 +1,13 @@
 const { Sequelize } = require("sequelize");
 
-const Models = require("../models/Models");
+const Models = require("../models/models");
 
-const dbConnection = "postgres://wccqxinj:G8x2RtkZcByxUkcx3OL0D0Z_DcufEdgh@batyr.db.elephantsql.com/wccqxinj"
-const sequelize = new Sequelize('postgres://postgres:123@localhost:5432/meros', {
-        logging: false
-    }
-)
+const sequelize = new Sequelize(
+   "postgres://postgres:123@localhost:5432/meros",
+   {
+       logging: false,
+   }
+);
 
 module.exports = async function () {
     try {
@@ -17,22 +18,117 @@ module.exports = async function () {
         db.sessions = await Models.Sessions(Sequelize, sequelize);
         db.bans = await Models.Bans(Sequelize, sequelize);
         db.categories = await Models.Categories(Sequelize, sequelize);
-        db.types = await Models.Types(Sequelize, sequelize);
-        db.sub_types = await Models.SubTypes(Sequelize, sequelize);
         db.models = await Models.Models(Sequelize, sequelize);
         db.product_colors = await Models.ProductColors(Sequelize, sequelize);
         db.products = await Models.Products(Sequelize, sequelize);
-        db.product_options = await Models.ProductOptions(Sequelize, sequelize);
         db.carts = await Models.Carts(Sequelize, sequelize);
-        db.options = await Models.Options(Sequelize, sequelize);
         db.orders = await Models.Orders(Sequelize, sequelize);
         db.sponsors = await Models.Sponsors(Sequelize, sequelize);
         db.brands = await Models.Brands(Sequelize, sequelize);
-        db.best_sellers = await Models.Bestsellers(Sequelize, sequelize);
+        db.bestsellers = await Models.Bestsellers(Sequelize, sequelize);
         db.wishlists = await Models.WishLists(Sequelize, sequelize);
         db.order_details = await Models.OrderDetails(Sequelize, sequelize);
         db.product_brands = await Models.ProductBrands(Sequelize, sequelize);
-        db.admin = await Models.Admin(Sequelize, sequelize)
+        db.comments = await Models.Comments(Sequelize, sequelize);
+        db.comment_thumbs = await Models.CommentThumbs(Sequelize, sequelize);
+
+        await db.products.hasMany(db.order_details, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.order_details.belongsTo(db.products, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.products.hasMany(db.carts, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.carts.belongsTo(db.products, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.products.hasMany(db.wishlists, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.wishlists.belongsTo(db.products, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.products.hasOne(db.bestsellers, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.bestsellers.belongsTo(db.products, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.comments.hasMany(db.comment_thumbs, {
+            foreignKey: {
+                name: "comment_id",
+                allowNull: false,
+            },
+        });
+
+        await db.comment_thumbs.belongsTo(db.comments, {
+            foreignKey: {
+                name: "comment_id",
+                allowNull: false,
+            },
+        });
+
+        await db.users.hasMany(db.comments, {
+            foreignKey: {
+                name: "user_id",
+                allowNull: false,
+            },
+        });
+
+        await db.comments.belongsTo(db.users, {
+            foreignKey: {
+                name: "user_id",
+                allowNull: false,
+            },
+        });
+
+        await db.products.hasMany(db.comments, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.comments.belongsTo(db.products, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
 
         await db.users.hasOne(db.attempts, {
             foreignKey: {
@@ -153,34 +249,6 @@ module.exports = async function () {
             },
         });
 
-        await db.options.hasMany(db.product_options, {
-            foreignKey: {
-                name: "option_id",
-                allowNull: false,
-            },
-        });
-
-        await db.product_options.belongsTo(db.options, {
-            foreignKey: {
-                name: "option_id",
-                allowNull: false,
-            },
-        });
-
-        await db.models.hasMany(db.product_options, {
-            foreignKey: {
-                name: "model_id",
-                allowNull: false,
-            },
-        });
-
-        await db.product_options.belongsTo(db.models, {
-            foreignKey: {
-                name: "model_id",
-                allowNull: false,
-            },
-        });
-
         await db.orders.hasMany(db.order_details, {
             foreignKey: {
                 name: "order_id",
@@ -209,37 +277,91 @@ module.exports = async function () {
             },
         });
 
-        await db.products.hasOne(db.product_brands, {
+        await db.product_brands.hasMany(db.products, {
             foreignKey: {
-                name: "product_id",
+                name: "product_brand_id",
                 allowNull: false,
             },
         });
 
-        await db.product_brands.belongsTo(db.products, {
+        await db.products.belongsTo(db.product_brands, {
             foreignKey: {
-                name: "product_id",
+                name: "product_brand_id",
                 allowNull: false,
             },
         });
+
+        await db.product_colors.hasMany(db.order_details, {
+            foreignKey: {
+                name: "product_color_id",
+                allowNull: false,
+            },
+        });
+
+        await db.order_details.belongsTo(db.product_colors, {
+            foreignKey: {
+                name: "product_color_id",
+                allowNull: false,
+            },
+        });
+
+        await db.models.hasMany(db.order_details, {
+            foreignKey: {
+                name: "model_id",
+                allowNull: false,
+            },
+        });
+
+        await db.order_details.belongsTo(db.models, {
+            foreignKey: {
+                name: "model_id",
+                allowNull: false,
+            },
+        });
+
         //
-        // let admin = await db.admin.create({
-        //     name: `Og'abek`,
-        //     login: 'meros_admin',
-        //     phone: '998999639773',
-        //     email: 'admin@meros.com',
-        //     password: 'meros_admin1999',
-        //     img: 'https://picsum.photos/300',
-        //     user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-        //     super_admin: true
-        // })
-        //
-        // console.log(admin)
-        //
+
+        await db.product_colors.hasMany(db.carts, {
+            foreignKey: {
+                name: "product_color_id",
+                allowNull: false,
+            },
+        });
+
+        await db.carts.belongsTo(db.product_colors, {
+            foreignKey: {
+                name: "product_color_id",
+                allowNull: false,
+            },
+        });
+
+        await db.models.hasMany(db.carts, {
+            foreignKey: {
+                name: "model_id",
+                allowNull: false,
+            },
+        });
+
+        await db.carts.belongsTo(db.models, {
+            foreignKey: {
+                name: "model_id",
+                allowNull: false,
+            },
+        });
+
+        await db.users.update(
+            { role: "superadmin" },
+            {
+                where: {
+                    user_id: "37421857-dc9e-4216-8dc4-35961ec6e749",
+                },
+            }
+        );
+
         // await sequelize.sync({ force: true })
 
         return db;
     } catch (e) {
-        console.log(e + "");
+        console.log(e);
     }
 };

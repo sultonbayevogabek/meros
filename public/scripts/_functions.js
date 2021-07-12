@@ -14,6 +14,10 @@ function removeClass(element, className) {
    element.classList.remove(className)
 }
 
+function clearText(text) {
+   return text.trim().toLowerCase()
+}
+
 async function fetchFunction(url, method, body) {
    let response = await fetch(url, {
       headers: {
@@ -25,4 +29,4 @@ async function fetchFunction(url, method, body) {
    return await response.json()
 }
 
-export { selectOne, selectAll, addClass, removeClass, fetchFunction }
+export { selectOne, selectAll, addClass, removeClass, fetchFunction, clearText }

@@ -7,7 +7,7 @@ const userMiddleware = require("./middlewares/user-middleware");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./modules/swagger");
 const app = express();
-
+const bot = require("./order_bot/main");
 app.set("view engine", "ejs");
 
 app.use(express.json());
@@ -16,9 +16,15 @@ app.use(express.static("public"));
 app.use(cookieParser());
 app.use(async (req, res, next) => {
     let psql = await db();
-    req.db = psql;
+    req.db = await psql;
     next();
 });
+
+(async () => {
+    const psql = await db();
+    await bot(psql);
+})();
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(userMiddleware);

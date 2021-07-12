@@ -78,6 +78,5 @@ export default function validateForm() {
          })
       })
    } catch (e) {
-      console.log(e)
    }
 }

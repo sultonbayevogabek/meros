@@ -1,31 +1,45 @@
-const { verifyToken } = require('../modules/jwt')
+const {verifyToken} = require("../modules/jwt");
 
 module.exports = async (req, res, next) => {
-   const adminToken = req.cookies['admin-token']
+   const {users, sessions} = req.db;
 
-   if (!adminToken) {
-      return res.redirect('/admin/login')
-   }
+   const token = req.cookies["token"] || req.headers["authorization"];
+   if (token) {
+      let {session_id} = verifyToken(token);
+      let session = await sessions.findOne({
+         where: {
+            session_id,
+         },
+         raw: true,
+      });
 
-   try {
-      const { admin } = req.db
-
-      const { login, password, user_agent } = verifyToken(adminToken)
-
-      const candidate = await admin.findOne({
-         login, password
-      })
-
-      if (!candidate || user_agent !== req.headers['user-agent']) {
-         throw new Error('admin not found')
+      if (!session) {
+         try {
+            res.clearCookie("token").redirect("/");
+         } catch (e) {
+            res.redirect("/");
+         } finally {
+            return;
+         }
       }
 
-      req.admin = {
-         name: candidate.name
-      }
-   } catch (err) {
-      return res.clearCookie('admin-token').redirect('/admin/login')
-   }
+      const user = await users.findOne({
+         where: {
+            user_id: session.user_id,
+         },
+         raw: true,
+      });
 
-   next()
-}
+      if (user.role !== "admin" && user.role !== "superadmin") {
+         res.redirect("/");
+         return
+      }
+
+      req.admin = user
+
+      next();
+
+      return
+   }
+   res.redirect("/")
+};

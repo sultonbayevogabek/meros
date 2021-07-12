@@ -1,3 +1,4 @@
+<% var brands, categories %>
 <%- include('header') %>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -14,6 +15,7 @@
         </li>
     </ul>
 </header>
+
 <div class="container-fluid">
     <div class="row">
         <%- include('nav') %>
@@ -29,18 +31,26 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card p-2">
-                        <form>
+                        <form id="brand-create-form">
                             <label class="d-block mb-2">
                                 <span>Brand logo(<b>.png or .jpg</b>)</span>
-                                <input class="form-control" type="file" accept="image/png, image/jpeg" required>
+                                <input class="form-control" id="brand-img" type="file" accept="image/png, image/jpeg" required>
                             </label>
                             <label class="d-block mb-2">
                                 <span>Brand name</span>
-                                <input class="form-control" type="text" required minlength="3" placeholder="Brand name">
+                                <input class="form-control" id="brand-name" type="text" required minlength="3" placeholder="Brand name">
                             </label>
                             <label class="d-block mb-2">
                                 <span>Brand web-site URL</span>
-                                <input class="form-control" type="url" required placeholder="Brand web-site URL">
+                                <input class="form-control" id="brand-site" type="url" required placeholder="Brand web-site URL">
+                            </label>
+                            <label class="d-block mb-2">
+                                <span>Brand category</span>
+                                <select class="form-control" id="brand-category" required>
+                                    <% categories.forEach(category => { %>
+                                        <option value="<%= category.category_id %>"><%= category.uz_name %></option>
+                                    <% }) %>
+                                </select>
                             </label>
                             <button class="btn btn-outline-primary">Add new brand</button>
                         </form>
@@ -50,213 +60,47 @@
                     <table class="table table-responsive table-bordered">
                         <thead>
                         <tr>
-                            <th>№</th>
                             <th>Brand name</th>
                             <th>Brand logo</th>
                             <th>Brand web-site URL</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Adidas</td>
-                            <td>
-                                <img src="/images/logos/3.png" alt="">
-                            </td>
-                            <td>
-                                <a href="#">https://sharq.uz</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <tbody id="brands-table-body">
+                        <% if (brands.length > 0) { %>
+                            <% brands.slice(0, 10).forEach(brand => { %>
+                                <tr>
+                                    <td>
+                                        <%= brand.brand_name %>
+                                    </td>
+                                    <td class="text-center" style="width: 200px">
+                                        <img class="w-50" src="/images/catalog-brands/<%= brand.brand_thumb %>" alt="">
+                                    </td>
+                                    <td>
+                                        <%= brand.brand_site %>
+                                    </td>
+                                    <td style="width: 130px">
+                                        <button class="btn btn-primary" data-brand-edit id="<%= brand.brand_id %>">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger" data-brand-remove id="<%= brand.brand_id %>" >
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <%})%>
+                        <% } else { %>
+                            <tr>
+                                <td class="text-center text-danger h5" colspan="6">Empty</td>
+                            </tr>
+                        <% } %>
                         </tbody>
                     </table>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
+                            <% for (let i = 0; i < Math.ceil(brands.length / 10); i++) { %>
+                                <li class="page-item"><a class="page-link" data-brand-page="<%= i + 1%>"><%= i + 1 %></a></li>
+                            <% } %>
                         </ul>
                     </nav>
                 </div>
@@ -264,5 +108,5 @@
         </main>
     </div>
 </div>
-
+<%- include('modal') %>
 <%- include('footer') %>

@@ -1,39 +1,83 @@
-const router = require('express').Router()
-
 const {
-   adminGet,
-   adminLoginGet,
-   adminExit,
-   adminOrdersGet,
-   adminProductsGet,
-   adminCustomersGet,
-   adminCategoriesGet,
-   adminBrandsGet
-} = require('../controllers/admin/admin-get')
-const { adminLoginPost } = require('../controllers/admin/admin-post')
+   adminGetController,
+   adminOrdersGetController,
+   adminProductsGetController,
+   adminBrandsGetController,
+   CategoryGetById,
+   BrandDeleteController,
+   BrandsGetController,
+   adminCategoriesGetController,
+   adminCustomersGetController,
+   CategoriesPostController,
+   CategoriesDeleteController,
+   ProductPostController,
+   ProductBrandPostController,
+   BrandPostController,
+   ProductColorsPostController,
+   ProductModelPostController,
+   ProductsGetController,
+   CategoriesGetController,
+   UsersGetController,
+   ProductsPatchController,
+   ProductModelPatchValidation,
+   ProductColorsPatchController,
+   CategoryPatchController,
+   SponsorsAddController,
+   SettingsPatchController,
+   BannersPostController,
+   BannersDeleteController,
+   OrdersGetController,
+   OrdersPaymentPatchController,
+   OrdersDeliveryPatchController,
+} = require("../controllers/admin/admin-controller");
 
-const adminMiddleware = require('../middlewares/admin-middleware')
-const dontEnterAuthorized = require('../middlewares/dont-enter-authorized')
+const AdminMiddleware = require("../middlewares/admin-middleware");
+const FileUpload = require("express-fileupload");
 
-router.get('/', dontEnterAuthorized, adminMiddleware, adminGet)
+const router = require("express").Router();
 
-router.get('/login', dontEnterAuthorized, adminLoginGet)
+router.use(AdminMiddleware)
 
-router.post('/login', dontEnterAuthorized, adminLoginPost)
-
-router.get('/exit', dontEnterAuthorized, adminExit)
-
-router.get('/orders', dontEnterAuthorized, adminOrdersGet)
-
-router.get('/products', dontEnterAuthorized, adminProductsGet)
-
-router.get('/customers', dontEnterAuthorized, adminCustomersGet)
-
-router.get('/categories', dontEnterAuthorized, adminCategoriesGet)
-
-router.get('/brands', dontEnterAuthorized, adminBrandsGet)
+router.get("/", adminGetController);
+router.get("/orders", adminOrdersGetController);
+router.get("/api/orders", OrdersGetController);
+router.post("/api/category", FileUpload(), CategoriesPostController);
+router.post("/api/product", FileUpload(), ProductPostController);
+router.get("/product", adminProductsGetController);
+router.post("/api/product-brand", FileUpload(), ProductBrandPostController);
+router.post("/api/banners", FileUpload(), BannersPostController);
+router.post("/api/brand", FileUpload(), BrandPostController);
+router.post("/api/delete/brand", BrandDeleteController);
+router.get("/brands", adminBrandsGetController);
+router.get("/api/brands", BrandsGetController);
+router.post("/api/product-color", FileUpload(), ProductColorsPostController);
+router.post("/api/product-model", FileUpload(), ProductModelPostController);
+router.post("/api/sponsors", FileUpload(), SponsorsAddController);
+router.get("/api/products", ProductsGetController);
+router.get("/api/categories", CategoriesGetController);
+router.get("/api/categories-id/:id", CategoryGetById);
+router.get("/categories", adminCategoriesGetController);
+router.get("/api/users", UsersGetController);
+router.get("/users", adminCustomersGetController);
+router.delete("/api/banners", BannersDeleteController);
+router.patch("/api/update/product", FileUpload(), ProductsPatchController);
+router.patch("/api/update/category", FileUpload(), CategoryPatchController);
+router.post("/api/delete/category", CategoriesDeleteController);
+router.patch("/api/settings", SettingsPatchController);
+router.patch("/api/orders-payment", OrdersPaymentPatchController);
+router.patch("/api/orders-delivery", OrdersDeliveryPatchController);
+router.patch(
+   "/update/product-color",
+   FileUpload(),
+   ProductColorsPatchController
+);
+router.patch(
+   "/update/product-model",
+   FileUpload(),
+   ProductModelPatchValidation
+);
 
 module.exports = {
-   path: '/admin',
-   router
-}
+   path: "/admin",
+   router,
+};

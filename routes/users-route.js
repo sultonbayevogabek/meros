@@ -1,4 +1,4 @@
-const UsersController = require("../controllers/users/UsersController");
+const UsersController = require("../controllers/users/users-controller");
 const dontEnterAuthorized = require('../middlewares/dont-enter-authorized')
 const router = require("express").Router();
 

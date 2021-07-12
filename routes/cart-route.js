@@ -1,12 +1,6 @@
 const router = require("express").Router();
 
-router.get("/", async (req, res) => {
-    res.render("cart", {
-        title: "Meros | Cart",
-        path: "/cart",
-        user: req.user,
-    });
-});
+router.get("/", );
 
 router.get("/checkout", async (req, res) => {
     res.render("checkout", {

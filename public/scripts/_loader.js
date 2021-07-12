@@ -1,4 +1,4 @@
-import { selectOne } from './_functions'
+import {selectOne} from './_functions'
 
 export default function loader() {
    try {
@@ -7,6 +7,5 @@ export default function loader() {
          loader.classList.add('d-none')
       })
    } catch (e) {
-
    }
 }

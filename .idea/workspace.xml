@@ -20,31 +20,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7651015b-46ce-43da-9dc8-03bbb6c8b4ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/cabinet/cabinet.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Aser.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Aser.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/users/users-controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/cabinet/cabinet-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cabinet/cabinet-get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/admin/admin-get.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/admin/admin-post.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/users/UsersController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/admin-middleware.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/user-middleware.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Models.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/category-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/options-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/product-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/product_options-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/sub_types-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/types-model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/jwt.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/jwt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/postgres.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/postgres.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/cabinet/humo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/cabinet/uzcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/cabinet/uzcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/_functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/_loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_loader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/_login.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/_modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/_range-slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_range-slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/_validate-forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_validate-forms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_auth.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_auth.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_base.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_books.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_books.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_cabinet.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_cabinet.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_cart.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_cart.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_feedback-modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_feedback-modal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_media.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_media.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_popular-categories.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_popular-categories.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_product-info-modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_product-info-modal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_products.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_products.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_single-product.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_single-product.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/cabinet-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/cabinet-route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cabinet.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/UsersRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin-route.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/cart-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/cart-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/login-route.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/code-validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/code-validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/login-validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/login-validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/phone-validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/phone-validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/reset-password-validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/reset-password-validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/signup-validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/validations/signup-validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/brands.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/brands.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/categories.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categories.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/footer.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,22 +85,24 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/cabinet" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/scripts" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\WEB ISHLANMALARIM\meros\views\cabinet" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\public\images\single-product" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\public\css" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\views\admin" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WEB ISHLANMALARIM\meros\controllers\product" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\controllers\order" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\controllers\home" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\controllers\users" />
       <recent name="D:\WEB ISHLANMALARIM\meros\views\cabinet" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\controllers\signup" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
+      <recent name="D:\WEB ISHLANMALARIM\meros" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\middlewares" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\validations" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\controllers" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -134,6 +155,12 @@
       <workItem from="1625744372026" duration="753000" />
       <workItem from="1625767488493" duration="18000" />
       <workItem from="1625810147829" duration="1242000" />
+      <workItem from="1625893729425" duration="6348000" />
+      <workItem from="1625908408240" duration="592000" />
+      <workItem from="1625912414210" duration="15652000" />
+      <workItem from="1625990817668" duration="27056000" />
+      <workItem from="1626024971845" duration="5372000" />
+      <workItem from="1626074274067" duration="23624000" />
     </task>
     <servers />
   </component>
@@ -153,35 +180,29 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1625070628722">
+    <state x="354" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1626105044094">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1625070628722" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1625476492500">
+    <state x="354" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1626105044094" />
+    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1625898935767">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1625476492500" />
+    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1625898935767" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1625929380826">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1625929380826" />
     <state x="184" y="8" key="SettingsEditor" timestamp="1624638153014">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1624638153014" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1625125880035">
+    <state x="339" y="162" key="run.anything.popup" timestamp="1626089281752">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1625125880035" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1626089281752" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1625080578776">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1625080578776" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/middlewares/admin-middleware.js</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

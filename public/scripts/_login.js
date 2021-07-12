@@ -109,6 +109,8 @@ export default async function () {
 
             response = await response.json()
 
+            console.log(response)
+
             if (response.ok) {
                window.location.href = '/'
             }

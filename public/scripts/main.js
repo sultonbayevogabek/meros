@@ -15,6 +15,10 @@ import rangeSlider from './_range-slider'
 import signup from './_signup'
 import login from './_login'
 import maskCard from './_mask-card'
+import adminCategory from './_admin-category'
+import categoryPagination from './_category-pagination'
+import adminBrand from './_admin-brand'
+import brandPagination from './_brand-pagination'
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -32,4 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
    signup()
    login()
    maskCard()
+   adminCategory()
+   categoryPagination()
+   adminBrand()
+   brandPagination()
 })

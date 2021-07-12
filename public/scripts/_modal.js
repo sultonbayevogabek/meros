@@ -1,15 +1,24 @@
-import { selectOne, addClass, removeClass } from './_functions'
+import { selectOne, selectAll, addClass, removeClass } from './_functions'
 
-function openModal(selector) {
-   const modal = selectOne(selector)
+function openModal() {
+   const modal = selectOne('.my-modal')
    removeClass(modal, 'd-none')
    document.body.style.overflow = 'hidden'
 }
 
-function closeModal(selector) {
-   const modal = selectOne(selector)
+function closeModal() {
+   const modal = selectOne('.my-modal')
    addClass(modal, 'd-none')
    document.body.style.overflow = ''
 }
 
-export { openModal, closeModal }
+function modalClosing() {
+   const modalCloserElements = selectAll('[data-modal-close]')
+   modalCloserElements.forEach(el => {
+      el.addEventListener('click', ev => {
+         closeModal()
+      })
+   })
+}
+
+export { openModal, closeModal, modalClosing }
