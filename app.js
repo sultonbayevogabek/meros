@@ -20,10 +20,10 @@ app.use(async (req, res, next) => {
     next();
 });
 
-(async () => {
-    const psql = await db();
-    await bot(psql);
-})();
+// (async () => {
+//     const psql = await db();
+//     await bot(psql);
+// })();
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 

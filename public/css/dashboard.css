@@ -212,3 +212,7 @@ ul {
 .page-item {
    cursor: pointer;
 }
+
+.page-link.active {
+   background-color: #ddd;
+}

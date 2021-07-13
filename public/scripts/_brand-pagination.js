@@ -8,22 +8,28 @@ export default function () {
 
       brandPaginationItems.forEach(el => {
          el.addEventListener('click', async ev => {
+            brandPaginationItems.forEach(el => el.classList.remove('active'))
+            ev.currentTarget.classList.add('active')
             let response = await fetch(`/admin/api/brands?c_page=${ev.target.getAttribute('data-brand-page')}&p_page=10`, {
                method: 'GET'
             })
             response = await response.json()
+
             brandsTableBody.innerHTML = ''
             response.result.brands.forEach(brand => {
                brandsTableBody.innerHTML += `
                   <tr>
                      <td>
-                         ${ brand.brand_name }
+                         ${ brand.brand_name.toUpperCase() }
                      </td>
                      <td class="text-center" style="width: 200px">
-                         <img class="w-50" src="/images/categories/${brand.brand_thumb}" alt="">
+                         <img class="w-50" src="/images/catalog-brands/${brand.brand_thumb}" alt="">
                      </td>
                      <td>
-                         <a href="${brand.brand_site}"></a>
+                        ${ brand['category.slug'] }
+                     </td>
+                     <td>
+                         <a href="${brand.brand_site}">${brand.brand_site}</a>
                      </td>
                      <td style="width: 110px">
                          <button class="btn btn-primary" data-brand-edit id="${brand.brand_id}">

@@ -34,7 +34,7 @@ export default function adminCategory() {
             const modalContent = selectOne('.my-modal-content')
 
             modalContent.innerHTML = `
-               <div class="alert alert-danger text-center" style="font-size: 20px">${ response.message.substring(6) }</div>
+               <div class="alert alert-danger text-center p-2" style="font-size: 20px">${ response.message.substring(6) }</div>
                <div class="d-flex justify-content-end">
                   <button class="btn btn-primary w-25" data-modal-close>OK</button>
                 </div>
@@ -180,19 +180,6 @@ export default function adminCategory() {
                }
             })
          })
-
-         function readURL(input) {
-            if (input.files && input.files[0]) {
-               var reader = new FileReader();
-
-               reader.onload = function (e) {
-                  $('#blah')
-                     .attr('src', e.target.result);
-               };
-
-               reader.readAsDataURL(input.files[0]);
-            }
-         }
       }
       
       function categoryImgUpdatedRemove() {

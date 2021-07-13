@@ -19,6 +19,7 @@ import adminCategory from './_admin-category'
 import categoryPagination from './_category-pagination'
 import adminBrand from './_admin-brand'
 import brandPagination from './_brand-pagination'
+import makeAndRemoveAdmin from './_make-remove-admin'
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -40,4 +41,5 @@ document.addEventListener('DOMContentLoaded', () => {
    categoryPagination()
    adminBrand()
    brandPagination()
+   makeAndRemoveAdmin()
 })

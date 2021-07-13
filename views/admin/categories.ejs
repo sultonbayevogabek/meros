@@ -118,7 +118,8 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
                             <% for (let i = 0; i < Math.ceil(categories.length / 10); i++) { %>
-                                <li class="page-item"><a class="page-link" data-category-page="<%= i + 1%>"><%= i + 1 %></a></li>
+                                <li class="page-item">
+                                    <a class="page-link" data-category-page="<%= i + 1%>"><%= i + 1 %></a></li>
                             <% } %>
                         </ul>
                     </nav>

@@ -22,13 +22,6 @@ module.exports = class AdminController {
       })
    }
 
-   static async adminOrdersGetController(req, res) {
-      res.render('admin/orders', {
-         title: 'Orders',
-         path: '/orders'
-      })
-   }
-
    static async CategoriesPostController(req, res) {
       try {
          const {uz_name, ru_name, en_name} =
@@ -101,8 +94,8 @@ module.exports = class AdminController {
             icon_thumb: `${icon_thumb.md5}.${
                icon_thumb.mimetype.split("/")[1].substr(0, 3)
             }`,
-            slug: slugify(en_name.toLowerCase()),
-         });
+            slug: slugify(uz_name.toLowerCase())
+         })
 
          category = await category.dataValues;
 
@@ -167,28 +160,488 @@ module.exports = class AdminController {
       }
    }
 
-   static async makeAdmin(req, res) {
-      try {
-         const {user_id} = req.body;
+   static async adminCategoriesGetController(req, res) {
+      const categories = await req.db.categories.findAll()
+      res.render('admin/categories', {
+         title: 'Categories',
+         path: '/categories',
+         categories
+      })
+   }
 
-         let user = await req.db.users.update(
+   static async CategoriesGetController(req, res) {
+      try {
+         let { p_page, c_page } = req.query;
+         if (!(p_page || c_page)) {
+            p_page = 10
+            c_page = 1
+         }
+         if (Number(p_page) === NaN || Number(c_page) === NaN) {
+            throw new Error("invalid c_page and p_page options");
+         }
+
+         const categories = await req.db.categories.findAll({
+            raw: true,
+            limit: p_page,
+            offset: p_page * (c_page - 1),
+         });
+
+         for (let category of categories) {
+            let brands = await req.db.brands.findAll({
+               where: {
+                  category_id: category.category_id,
+               },
+               raw: true,
+            });
+            category.brands = brands;
+         }
+
+         res.status(200).json({
+            ok: true,
+            result: {
+               categories
+            }
+         })
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+
+   static async CategoryPatchController(req, res) {
+      try {
+         console.log(req.files)
+         console.log(req.body)
+         const { uz_name, ru_name, en_name, category_id } =
+            await categoryPatchValidation.validateAsync(req.body)
+
+         let category = await req.db.categories.findOne({
+            where: {
+               slug: slugify(uz_name.toLowerCase())
+            },
+            raw: true
+         })
+
+         const c = await req.db.categories.findOne({
+            where: {
+               category_id
+            },
+            raw: true
+         })
+
+         if (c.slug !== category?.slug) {
+            if (category) {
+               throw new Error("Category name must be unique");
+            }
+         }
+
+         let thumb
+         let icon_thumb
+
+         if (req.files) {
+            if (req.files.thumb) {
+               thumb = req.files.thumb
+
+               if (
+                  thumb.mimetype.split("/")[0] !== "image" &&
+                  thumb.mimetype.split("/")[0] !== "vector"
+               ) {
+                  throw new Error("Please upload image");
+               }
+
+               await thumb.mv(
+                  path.join(
+                     __dirname,
+                     "..",
+                     "..",
+                     "public",
+                     "images",
+                     "categories",
+                     `${thumb.md5}.${thumb.mimetype.split("/")[1]}`
+                  ),
+                  (err) => {
+                  }
+               )
+            }
+
+            if (req.files.icon_thumb) {
+               icon_thumb = req.files.icon_thumb;
+
+               if (
+                  icon_thumb.mimetype.split("/")[0] !== "image" &&
+                  icon_thumb.mimetype.split("/")[0] !== "vector"
+               ) {
+                  throw new Error("Please upload image");
+               }
+
+               await icon_thumb.mv(
+                  path.join(
+                     __dirname,
+                     "..",
+                     "..",
+                     "public",
+                     "images",
+                     "categories-icons",
+                     `${icon_thumb.md5}.${icon_thumb.mimetype.split("/")[1]}`
+                  ),
+                  (err) => {
+                  }
+               );
+            }
+
+         }
+
+         category = await req.db.categories.update(
             {
-               role: "admin",
+               uz_name,
+               ru_name,
+               en_name,
+               thumb: thumb ? `${thumb.md5}.${thumb.mimetype.split("/")[1]}` : c.thumb,
+               icon_thumb: icon_thumb ? `${icon_thumb.md5}.${
+                  icon_thumb.mimetype.split("/")[1].substr(0, 3)
+               }` : c.icon_thumb,
+               slug: slugify(uz_name.toLowerCase())
             },
             {
                where: {
-                  user_id,
+                  category_id,
                },
                raw: true,
                returning: true,
             }
          );
 
-         user = await user[1][0];
+         category = await category[1][0];
 
          res.status(200).json({
             ok: true,
-            user: user,
+            message: "published",
+            result: {
+               category,
+            },
+         });
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+
+   static async adminBrandsGetController(req, res) {
+      const brands = await req.db.brands.findAll({
+         include: req.db.categories
+      }),
+      categories = await req.db.categories.findAll()
+
+      res.render('admin/brands', {
+         title: 'Brands',
+         path: '/brands',
+         brands,
+         categories
+      })
+   }
+
+   static async BrandPostController(req, res) {
+      try {
+         const { brand_name, brand_site, category_id } = req.body;
+
+         let brand = await req.db.brands.findOne({
+            where: {
+               brand_name: brand_name,
+            },
+         });
+
+         if (brand) {
+            throw new Error("This brand has already added");
+         }
+
+         if (!brand_name && !category_id) {
+            throw new Error("category_id and brand name is required");
+         }
+
+         const thumb = req?.files?.brand_thumb;
+
+         if (!thumb) throw new Error("Thumb is not found");
+
+         const mimetype = thumb.mimetype.split("/");
+
+         if (mimetype[0] !== "image" && mimetype[0] !== "vector") {
+            throw new Error("invalid file type for thumb");
+         }
+
+         const thumb_name = thumb.md5;
+         const thumb_path = path.join(
+            __dirname,
+            "..",
+            "..",
+            "public",
+            "images",
+            "catalog-brands",
+            `${thumb_name}.${mimetype[1]}`
+         );
+
+         await thumb.mv(thumb_path);
+
+         brand = await req.db.brands.create({
+            brand_name,
+            brand_thumb: `${thumb_name}.${mimetype[1]}`,
+            brand_site,
+            category_id,
+         });
+
+         brand = await brand.dataValues;
+
+         res.status(201).json({
+            ok: true,
+            message: "published",
+            result: {
+               brand,
+            },
+         });
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+
+   static async BrandDeleteController(req, res) {
+      try {
+         const { id } = req.body
+         await req.db.brands.destroy({
+            where: {
+               brand_id: id
+            }
+         })
+         res.send({
+            ok: true,
+            message: 'deleted'
+         })
+      } catch (e) {
+         res.send(400).json({
+            ok: false
+         })
+      }
+   }
+
+   static async BrandsGetController(req, res) {
+      try {
+         let { p_page, c_page } = req.query
+         if (!(p_page || c_page)) {
+            p_page = 10
+            c_page = 1
+         }
+         if (Number(p_page) === NaN || Number(c_page) === NaN) {
+            throw new Error("invalid c_page and p_page options");
+         }
+
+         const brands = await req.db.brands.findAll({
+            raw: true,
+            limit: p_page,
+            offset: p_page * (c_page - 1),
+            include: {
+               model: req.db.categories
+            }
+         })
+
+         res.status(200).json({
+            ok: true,
+            result: {
+               brands
+            }
+         })
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+
+   static async BrandGetByIdController(req, res) {
+      try {
+         const id = req.params.id
+         const brand = await req.db.brands.findOne({
+            where: {
+               brand_id: id
+            }
+         })
+         const categories = await req.db.categories.findAll()
+
+         res.status(200).json({
+            ok: true,
+            result: {
+               brand,
+               categories
+            }
+         })
+      } catch (e) {
+         res.status(404).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+
+   static async BannersPostController(req, res) {
+      try {
+         const {banner_name} = bannersPostValidation.validateAsync(
+            req.body
+         );
+
+         const banner = req.files?.img;
+
+         if (!banner) throw new Error("Banner image is not found");
+
+         const type = banner.mimetype.split("/")[0];
+         const format = banner.mimetype.split("/")[1];
+
+         if (type !== "image" && type !== "vector") {
+            throw new Error(
+               "Banner image type must be an image or svg vector"
+            );
+         }
+
+         const banner_path = path.join(
+            __dirname,
+            "..",
+            "public",
+            "images",
+            "banner",
+            `${banner.md5}.${format}`
+         );
+
+         await banner.mv(banner_path, (err) => {
+            if (err) {
+               throw new Error(err);
+            }
+         });
+
+         let banners = await fs.readFile(
+            path.join(__dirname, "..", "banners.json"),
+            {encoding: "utf-8"}
+         );
+
+         banners = await JSON.parse(banners);
+         banners[req.body.banner_name] = `${banner.md5}.${format}`;
+
+         await fs.writeFile(
+            path.join(__dirname, "..", "banners.json"),
+            JSON.stringify(banners),
+            {encoding: "utf-8"}
+         );
+
+         res.status(201).json({
+            ok: true,
+            message: "POSTED",
+            result: {
+               banners,
+            },
+         });
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+
+   static async BannersDeleteController(req, res) {
+      try {
+         const {banner_name} = await bannersPostValidation.validateAsync(
+            req.body
+         );
+
+         let banners = await fs.readFile(
+            path.join(__dirname, "..", "banners.json"),
+            {encoding: "utf-8"}
+         );
+
+         banners = await JSON.parse(banners);
+         banners[req.body.banner_name] = "";
+
+         await fs.writeFile(
+            path.join(__dirname, "..", "banners.json"),
+            JSON.stringify(banners),
+            {encoding: "utf-8"}
+         );
+
+         res.status(200).json({
+            ok: true,
+            message: "UPDATED",
+            result: {banners},
+         });
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+
+   static async BrandUpdateController(req, res) {
+      try {
+         const { brand_name, brand_site, brand_id, category_id } = req.body
+
+         if (!brand_name || !brand_id || !category_id) {
+            throw new Error("brand_id and brand name is required")
+         }
+
+         let brand = await req.db.brands.findOne({
+            where: {
+               brand_id
+            }
+         });
+
+         if (!brand) {
+            throw new Error("Unknown brand");
+         }
+
+         let thumb = req?.files?.brand_thumb,
+            thumb_name, mimetype
+
+         if (thumb) {
+            mimetype = thumb.mimetype.split("/");
+
+            if (mimetype[0] !== "image" && mimetype[0] !== "vector") {
+               throw new Error("invalid file type for thumb");
+            }
+
+            thumb_name = thumb.md5;
+            const thumb_path = path.join(
+               __dirname,
+               "..",
+               "..",
+               "public",
+               "images",
+               "catalog-brands",
+               `${thumb_name}.${mimetype[1]}`
+            );
+
+            await thumb.mv(thumb_path);
+         }
+
+         brand = await req.db.brands.update({
+            brand_name,
+            brand_thumb: thumb ? `${thumb_name}.${mimetype[1]}` : brand.thumb,
+            brand_site,
+            category_id
+         }, {
+            where: {
+               brand_id
+            }
+         });
+
+         res.status(201).json({
+            ok: true,
+            message: "published",
+            result: {
+               brand,
+            },
          });
       } catch (e) {
          res.status(400).json({
@@ -205,31 +658,34 @@ module.exports = class AdminController {
       })
    }
 
-   static async adminBrandsGetController(req, res) {
-      const brands = await req.db.brands.findAll(),
-         categories = await req.db.categories.findAll()
-
-      res.render('admin/brands', {
-         title: 'Brands',
-         path: '/brands',
-         brands,
-         categories
-      })
-   }
-
-   static async adminCategoriesGetController(req, res) {
-      const categories = await req.db.categories.findAll()
-      res.render('admin/categories', {
-         title: 'Categories',
-         path: '/categories',
-         categories
-      })
-   }
-
    static async adminCustomersGetController(req, res) {
+      let users
+      if (req.user.role === 'admin') {
+         users = await req.db.users.findAll({
+            where: {
+               role: {
+                  [Op.and]: {
+                     [Op.ne]: 'admin',
+                     [Op.ne]: 'superadmin'
+                  }
+               }
+            }
+         })
+      } else {
+         users = await req.db.users.findAll({
+            where: {
+               role: {
+                  [Op.ne]: 'superadmin'
+               }
+            }
+         })
+      }
+
       res.render('admin/customers', {
          title: 'Customers',
-         path: '/customers'
+         path: '/customers',
+         users,
+         currentUser: req.user
       })
    }
 
@@ -341,79 +797,6 @@ module.exports = class AdminController {
             ok: false,
             message: e + "",
          });
-      }
-   }
-
-   static async BrandPostController(req, res) {
-      try {
-         const { brand_name, brand_site, category_id } = req.body;
-
-         let brand = await req.db.brands.findOne({
-            where: {
-               brand_name: brand_name,
-            },
-         });
-
-         if (brand) {
-            throw new Error("This brand has already added");
-         }
-
-         if (!brand_name && !category_id) {
-            throw new Error("category_id and brand name is required");
-         }
-
-         const thumb = req?.files?.brand_thumb;
-
-         if (!thumb) throw new Error("Thumb is not found");
-
-         const mimetype = thumb.mimetype.split("/");
-
-         if (mimetype[0] !== "image" && mimetype[0] !== "vector") {
-            throw new Error("invalid file type for thumb");
-         }
-
-         const thumb_name = thumb.md5;
-         const thumb_path = path.join(
-            __dirname,
-            "..",
-            "..",
-            "public",
-            "images",
-            "catalog-brands",
-            `${thumb_name}.${mimetype[1]}`
-         );
-
-         await thumb.mv(thumb_path);
-
-         brand = await req.db.brands.create({
-            brand_name,
-            brand_thumb: `${thumb_name}.${mimetype[1]}`,
-            brand_site,
-            category_id,
-         });
-
-         brand = await brand.dataValues;
-
-         res.status(201).json({
-            ok: true,
-            message: "published",
-            result: {
-               brand,
-            },
-         });
-      } catch (e) {
-         res.status(400).json({
-            ok: false,
-            message: e + "",
-         });
-      }
-   }
-
-   static async BrandDeleteController(req, res) {
-      try {
-         console.log(req.body)
-      } catch (e) {
-
       }
    }
 
@@ -570,78 +953,6 @@ module.exports = class AdminController {
          });
       } catch (e) {
          console.log(e)
-         res.status(400).json({
-            ok: false,
-            message: e + "",
-         });
-      }
-   }
-
-   static async CategoriesGetController(req, res) {
-      try {
-         let { p_page, c_page } = req.query;
-         if (!(p_page || c_page)) {
-            p_page = 10
-            c_page = 1
-         }
-         if (Number(p_page) === NaN || Number(c_page) === NaN) {
-            throw new Error("invalid c_page and p_page options");
-         }
-
-         const categories = await req.db.categories.findAll({
-            raw: true,
-            limit: p_page,
-            offset: p_page * (c_page - 1),
-         });
-
-         for (let category of categories) {
-            let brands = await req.db.brands.findAll({
-               where: {
-                  category_id: category.category_id,
-               },
-               raw: true,
-            });
-            category.brands = brands;
-         }
-
-         res.status(200).json({
-            ok: true,
-            result: {
-               categories
-            }
-         })
-      } catch (e) {
-         res.status(400).json({
-            ok: false,
-            message: e + "",
-         });
-      }
-   }
-
-   static async BrandsGetController(req, res) {
-      try {
-         let { p_page, c_page } = req.query
-         if (!(p_page || c_page)) {
-            p_page = 10
-            c_page = 1
-         }
-         if (Number(p_page) === NaN || Number(c_page) === NaN) {
-            throw new Error("invalid c_page and p_page options");
-         }
-
-         const brands = await req.db.brands.findAll({
-            raw: true,
-            limit: p_page,
-            offset: p_page * (c_page - 1),
-         })
-
-         res.status(200).json({
-            ok: true,
-            result: {
-               brands
-            }
-         })
-      } catch (e) {
          res.status(400).json({
             ok: false,
             message: e + "",
@@ -873,117 +1184,103 @@ module.exports = class AdminController {
       }
    }
 
-   static async CategoryPatchController(req, res) {
+   static async adminOrdersGetController(req, res) {
+      res.render('admin/orders', {
+         title: 'Orders',
+         path: '/orders'
+      })
+   }
+
+   static async OrdersGetController(req, res) {
       try {
-         console.log(req.files)
-         console.log(req.body)
-         const { uz_name, ru_name, en_name, category_id } =
-            await categoryPatchValidation.validateAsync(req.body)
+         let orders = await req.db.orders.findAll({
+            raw: true,
+         });
 
-         let category = await req.db.categories.findOne({
-            where: {
-               slug: slugify(uz_name.toLowerCase())
-            },
-            raw: true
-         })
-
-         const c = await req.db.categories.findOne({
-            where: {
-               category_id
-            },
-            raw: true
-         })
-
-         if (c.slug !== category?.slug) {
-            if (category) {
-               throw new Error("Category name must be unique");
-            }
+         for (let order of orders) {
+            let order_items = await req.db.order_details.findAll({
+               where: {
+                  order_id: order.order_id,
+               },
+               include: {
+                  model: req.db.products,
+               },
+               raw: true,
+            });
+            order.items = order_items;
          }
 
-         let thumb
-         let icon_thumb
+         res.status(200).json({
+            ok: true,
+            result: {
+               orders,
+            },
+         });
+      } catch (e) {
+         res.status(403).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
 
-         if (req.files) {
-            if (req.files.thumb) {
-               thumb = req.files.thumb
+   static async OrdersPaymentPatchController(req, res) {
+      try {
+         const {order_id, is_payed} = req.body;
 
-               if (
-                  thumb.mimetype.split("/")[0] !== "image" &&
-                  thumb.mimetype.split("/")[0] !== "vector"
-               ) {
-                  throw new Error("Please upload image");
-               }
-
-               await thumb.mv(
-                  path.join(
-                     __dirname,
-                     "..",
-                     "..",
-                     "public",
-                     "images",
-                     "categories",
-                     `${thumb.md5}.${thumb.mimetype.split("/")[1]}`
-                  ),
-                  (err) => {
-                  }
-               )
-            }
-
-            if (req.files.icon_thumb) {
-               icon_thumb = req.files.icon_thumb;
-
-               if (
-                  icon_thumb.mimetype.split("/")[0] !== "image" &&
-                  icon_thumb.mimetype.split("/")[0] !== "vector"
-               ) {
-                  throw new Error("Please upload image");
-               }
-
-               await icon_thumb.mv(
-                  path.join(
-                     __dirname,
-                     "..",
-                     "..",
-                     "public",
-                     "images",
-                     "categories-icons",
-                     `${icon_thumb.md5}.${icon_thumb.mimetype.split("/")[1]}`
-                  ),
-                  (err) => {
-                  }
-               );
-            }
-
-         }
-
-         category = await req.db.categories.update(
+         let order = await req.db.orders.update(
             {
-               uz_name,
-               ru_name,
-               en_name,
-               thumb: thumb ? `${thumb.md5}.${thumb.mimetype.split("/")[1]}` : c.thumb,
-               icon_thumb: icon_thumb ? `${icon_thumb.md5}.${
-                  icon_thumb.mimetype.split("/")[1].substr(0, 3)
-               }` : c.icon_thumb,
-               slug: slugify(uz_name.toLowerCase()),
+               is_payed: is_payed,
             },
             {
                where: {
-                  category_id,
+                  order_id,
                },
                raw: true,
                returning: true,
             }
          );
 
-         category = await category[1][0];
+         if (order[1]) {
+            order = await order[1][0];
+         }
 
          res.status(200).json({
             ok: true,
-            message: "published",
-            result: {
-               category,
+            order: order,
+         });
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+
+   static async OrdersDeliveryPatchController(req, res) {
+      try {
+         const {order_id, is_shipped} = req.body;
+
+         let order = await req.db.orders.update(
+            {
+               is_shipped: is_shipped,
             },
+            {
+               where: {
+                  order_id,
+               },
+               raw: true,
+               returning: true,
+            }
+         );
+
+         if (order[1]) {
+            order = await order[1][0];
+         }
+
+         res.status(200).json({
+            ok: true,
+            order: order,
          });
       } catch (e) {
          res.status(400).json({
@@ -1111,198 +1408,57 @@ module.exports = class AdminController {
       }
    }
 
-   static async BannersPostController(req, res) {
+   static async makeAdmin(req, res) {
       try {
-         const {banner_name} = bannersPostValidation.validateAsync(
-            req.body
-         );
+         const { user_id } = req.body;
 
-         const banner = req.files?.img;
-
-         if (!banner) throw new Error("Banner image is not found");
-
-         const type = banner.mimetype.split("/")[0];
-         const format = banner.mimetype.split("/")[1];
-
-         if (type !== "image" && type !== "vector") {
-            throw new Error(
-               "Banner image type must be an image or svg vector"
-            );
-         }
-
-         const banner_path = path.join(
-            __dirname,
-            "..",
-            "public",
-            "images",
-            "banner",
-            `${banner.md5}.${format}`
-         );
-
-         await banner.mv(banner_path, (err) => {
-            if (err) {
-               throw new Error(err);
-            }
-         });
-
-         let banners = await fs.readFile(
-            path.join(__dirname, "..", "banners.json"),
-            {encoding: "utf-8"}
-         );
-
-         banners = await JSON.parse(banners);
-         banners[req.body.banner_name] = `${banner.md5}.${format}`;
-
-         await fs.writeFile(
-            path.join(__dirname, "..", "banners.json"),
-            JSON.stringify(banners),
-            {encoding: "utf-8"}
-         );
-
-         res.status(201).json({
-            ok: true,
-            message: "POSTED",
-            result: {
-               banners,
-            },
-         });
-      } catch (e) {
-         res.status(400).json({
-            ok: false,
-            message: e + "",
-         });
-      }
-   }
-
-   static async BannersDeleteController(req, res) {
-      try {
-         const {banner_name} = await bannersPostValidation.validateAsync(
-            req.body
-         );
-
-         let banners = await fs.readFile(
-            path.join(__dirname, "..", "banners.json"),
-            {encoding: "utf-8"}
-         );
-
-         banners = await JSON.parse(banners);
-         banners[req.body.banner_name] = "";
-
-         await fs.writeFile(
-            path.join(__dirname, "..", "banners.json"),
-            JSON.stringify(banners),
-            {encoding: "utf-8"}
-         );
-
-         res.status(200).json({
-            ok: true,
-            message: "UPDATED",
-            result: {banners},
-         });
-      } catch (e) {
-         res.status(400).json({
-            ok: false,
-            message: e + "",
-         });
-      }
-   }
-
-   static async OrdersGetController(req, res) {
-      try {
-         let orders = await req.db.orders.findAll({
-            raw: true,
-         });
-
-         for (let order of orders) {
-            let order_items = await req.db.order_details.findAll({
-               where: {
-                  order_id: order.order_id,
-               },
-               include: {
-                  model: req.db.products,
-               },
-               raw: true,
-            });
-            order.items = order_items;
-         }
-
-         res.status(200).json({
-            ok: true,
-            result: {
-               orders,
-            },
-         });
-      } catch (e) {
-         res.status(403).json({
-            ok: false,
-            message: e + "",
-         });
-      }
-   }
-
-   static async OrdersPaymentPatchController(req, res) {
-      try {
-         const {order_id, is_payed} = req.body;
-
-         let order = await req.db.orders.update(
-            {
-               is_payed: is_payed,
-            },
-            {
-               where: {
-                  order_id,
-               },
+         let user = await req.db.users.update({
+               role: "admin",
+            }, {
+               where: { user_id },
                raw: true,
                returning: true,
             }
-         );
+         )
 
-         if (order[1]) {
-            order = await order[1][0];
-         }
+         user = await user[1][0]
 
          res.status(200).json({
             ok: true,
-            order: order,
-         });
+            user: user
+         })
       } catch (e) {
          res.status(400).json({
             ok: false,
-            message: e + "",
-         });
+            message: e + ""
+         })
       }
    }
 
-   static async OrdersDeliveryPatchController(req, res) {
+   static async removeAdmin(req, res) {
       try {
-         const {order_id, is_shipped} = req.body;
+         const { user_id } = req.body;
 
-         let order = await req.db.orders.update(
-            {
-               is_shipped: is_shipped,
-            },
-            {
-               where: {
-                  order_id,
-               },
+         let user = await req.db.users.update({
+               role: "user",
+            }, {
+               where: { user_id },
                raw: true,
                returning: true,
             }
-         );
+         )
 
-         if (order[1]) {
-            order = await order[1][0];
-         }
+         user = await user[1][0]
 
          res.status(200).json({
             ok: true,
-            order: order,
-         });
+            user: user
+         })
       } catch (e) {
          res.status(400).json({
             ok: false,
-            message: e + "",
-         });
+            message: e + ""
+         })
       }
    }
-};
+}

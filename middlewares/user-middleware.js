@@ -32,7 +32,7 @@ module.exports = async (req, res, next) => {
                 user_id: session.user_id,
             },
             raw: true,
-        });
+        })
 
         req.user = {
             id: user.user_id,

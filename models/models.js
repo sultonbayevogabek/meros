@@ -37,6 +37,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Attempts(Sequelize, sequelize) {
       return sequelize.define("attempts", {
          attempt_id: {
@@ -55,6 +56,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Bans(Sequelize, sequelize) {
       return sequelize.define("bans", {
          ban_id: {
@@ -68,6 +70,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Sessions(Sequelize, sequelize) {
       return sequelize.define("sessions", {
          session_id: {
@@ -85,6 +88,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Categories(Sequelize, sequelize) {
       return sequelize.define("categories", {
          category_id: {
@@ -119,6 +123,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Products(Sequelize, sequelize) {
       return sequelize.define("products", {
          product_id: {
@@ -177,6 +182,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Models(Sequelize, sequelize) {
       return sequelize.define("models", {
          model_id: {
@@ -199,6 +205,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async ProductColors(Sequelize, sequelize) {
       return sequelize.define("product_colors", {
          product_color_id: {
@@ -216,6 +223,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Carts(Sequelize, sequelize) {
       return sequelize.define("carts", {
          cart_id: {
@@ -230,6 +238,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Orders(Sequelize, sequelize) {
       return sequelize.define("orders", {
          order_id: {
@@ -275,6 +284,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async OrderDetails(Sequelize, sequelize) {
       return sequelize.define("order_details", {
          order_detail_id: {
@@ -288,6 +298,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Sponsors(Sequelize, sequelize) {
       return sequelize.define("sponsors", {
          sponsor_id: {
@@ -305,6 +316,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Brands(Sequelize, sequelize) {
       return sequelize.define("brands", {
          brand_id: {
@@ -326,6 +338,7 @@ module.exports = class Models {
          }
       });
    }
+
    static async Bestsellers(Sequelize, sequelize) {
       return sequelize.define("bestsellers", {
          best_seller_id: {
@@ -335,6 +348,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async WishLists(Sequelize, sequelize) {
       return sequelize.define("wish_lists", {
          wish_id: {
@@ -344,6 +358,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async ProductBrands(Sequelize, sequelize) {
       return sequelize.define("product_brands", {
          product_brand_id: {
@@ -358,6 +373,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async Comments(Sequelize, sequelize) {
       return sequelize.define("comments", {
          comment_id: {
@@ -375,6 +391,7 @@ module.exports = class Models {
          },
       });
    }
+
    static async CommentThumbs(Sequelize, sequelize) {
       return sequelize.define("comment_thumbs", {
          thumb: {

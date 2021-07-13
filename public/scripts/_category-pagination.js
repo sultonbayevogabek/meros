@@ -8,6 +8,8 @@ export default function () {
 
       categoryPaginationItems.forEach(el => {
          el.addEventListener('click', async ev => {
+            categoryPaginationItems.forEach(el => el.classList.remove('active'))
+            ev.currentTarget.classList.add('active')
             let response = await fetch(`/admin/api/categories?c_page=${ev.target.getAttribute('data-category-page')}&p_page=10`, {
                method: 'GET'
             })
