@@ -4,6 +4,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const db = require("./modules/postgres");
 const userMiddleware = require("./middlewares/user-middleware");
+const generalInfoMiddleware = require("./middlewares/general-info-middleware");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./modules/swagger");
 const app = express();
@@ -20,14 +21,15 @@ app.use(async (req, res, next) => {
     next();
 });
 
-// (async () => {
-//     const psql = await db();
-//     await bot(psql);
-// })();
+(async () => {
+    const psql = await db();
+    await bot(psql);
+})();
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(userMiddleware);
+app.use(generalInfoMiddleware);
 
 const pathToRoutes = path.join(__dirname, "routes");
 

@@ -13,18 +13,14 @@ module.exports = class HomeController {
             sessions,
             users,
             bestsellers,
-            sponsors,
-        } = req.db;
+            sponsors
+        } = req.db
 
-        let token = req.headers["authorization"];
+        let token = req.headers["authorization"]
 
-        let cats = await categories.findAll({
-            raw: true,
-        });
-
-        let wishlist = [];
-        let cart = [];
-        let user;
+        let wishlist = []
+        let cart = []
+        let user
 
         if (token) {
             let { session_id } = verifyToken(token);
@@ -79,7 +75,7 @@ module.exports = class HomeController {
         });
 
         let banners = await fs.readFile(
-            path.join(__dirname, "..", "banners.json"),
+            path.join(__dirname, "..", "..", "banners.json"),
             { encoding: "utf-8" }
         );
 
@@ -92,14 +88,14 @@ module.exports = class HomeController {
         res.render("index", {
             path: "/",
             title: "Meros | Home",
-            user: user,
             products: pros,
-            categories: cats,
+            categories: req.categories,
             bestsellers: bests,
             cart: cart,
             wishlist: wishlist,
             banners: banners,
             sponsors: partners,
-        });
+            user: req.user
+        })
     }
 };

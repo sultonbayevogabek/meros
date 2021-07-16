@@ -1,4 +1,4 @@
-<% var brands, categories %>
+<% var brands, categories, totalCount %>
 <%- include('header') %>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -69,7 +69,7 @@
                         </thead>
                         <tbody id="brands-table-body">
                         <% if (brands.length > 0) { %>
-                            <% brands.slice(0, 10).forEach(brand => { %>
+                            <% brands.forEach(brand => { %>
                                 <tr>
                                     <td>
                                         <%= brand.brand_name.toUpperCase() %>
@@ -78,7 +78,7 @@
                                         <img class="w-50" src="/images/catalog-brands/<%= brand.brand_thumb %>" alt="">
                                     </td>
                                     <td>
-                                        <%= brand.category.uz_name %>
+                                        <%= brand['category.uz_name'] %>
                                     </td>
                                     <td>
                                         <a href="<%= brand.brand_site %>"><%= brand.brand_site %></a>
@@ -102,8 +102,10 @@
                     </table>
                     <nav class="mb-4" aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
-                            <% for (let i = 0; i < Math.ceil(brands.length / 10); i++) { %>
-                                <li class="page-item"><a class="page-link" data-brand-page="<%= i + 1%>"><%= i + 1 %></a></li>
+                            <% for (let i = 0; i < Math.ceil(totalCount / 10); i++) { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="/admin/brands?c_page=<%= i + 1 %>&p_page=10"><%= i + 1 %></a>
+                                </li>
                             <% } %>
                         </ul>
                     </nav>

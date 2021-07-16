@@ -20,23 +20,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7651015b-46ce-43da-9dc8-03bbb6c8b4ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Aser.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Aser.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/admin/add-product.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/admin/admin-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/admin/admin-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/user-middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/user-middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/models.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/cabinet/cabinet-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cabinet/cabinet-get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/home-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/home-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/home/home-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/home/home-get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/login/login-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/login/login-get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/meros-diskont/meros-diskont-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/meros-diskont/meros-diskont-get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/meros-merch/meros-merch-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/meros-merch/meros-merch-get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/order/order-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/order/order-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/product/product-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/product/product-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/users/users-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users/users-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/postgres.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/postgres.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order_bot/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/order_bot/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/_admin-brand.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_admin-brand.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/_admin-category.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_admin-category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/_brand-pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_brand-pagination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/_category-pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_category-pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/_search-input.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_search-input.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/CartRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/CartRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/cart-route.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/categories-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/categories-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/home-route.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/product-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/product-route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/brands.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/brands.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/categories.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categories.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/customers.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/customers.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/nav.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/nav.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/orders.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/orders.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/products.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/cabinet/sidebar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/cabinet/sidebar.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/cart.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/cart.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/categories.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/categories.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/checkout.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/checkout.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/catalog-modal.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/catalog-modal.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/categories-modal.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/categories-modal.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/single-product.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/single-product.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,24 +84,24 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/scripts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WEB ISHLANMALARIM\meros\views" />
+      <recent name="D:\WEB ISHLANMALARIM\meros" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\views\admin" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\middlewares" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\WEB ISHLANMALARIM\meros\controllers\product" />
       <recent name="D:\WEB ISHLANMALARIM\meros\controllers\order" />
       <recent name="D:\WEB ISHLANMALARIM\meros\controllers\home" />
       <recent name="D:\WEB ISHLANMALARIM\meros\controllers\users" />
       <recent name="D:\WEB ISHLANMALARIM\meros\views\cabinet" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
-      <recent name="D:\WEB ISHLANMALARIM\meros" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\middlewares" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\validations" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\controllers" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -135,7 +161,11 @@
       <workItem from="1626024971845" duration="5372000" />
       <workItem from="1626074274067" duration="26090000" />
       <workItem from="1626112078574" duration="7076000" />
-      <workItem from="1626158926111" duration="24204000" />
+      <workItem from="1626158926111" duration="31714000" />
+      <workItem from="1626234940551" duration="28320000" />
+      <workItem from="1626280944517" duration="12479000" />
+      <workItem from="1626325798195" duration="39500000" />
+      <workItem from="1626410359374" duration="16838000" />
     </task>
     <servers />
   </component>
@@ -171,13 +201,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1624638153014" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1626089281752">
+    <state x="339" y="162" key="run.anything.popup" timestamp="1626279302812">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1626089281752" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1626176384368">
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1626279302812" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1626332964610">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1626176384368" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1626332964610" />
   </component>
 </project>

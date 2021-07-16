@@ -13,33 +13,33 @@ module.exports = class ProductsController {
                 sessions,
                 users,
                 bestsellers,
-                sponsors,
+                sponsors
             } = req.db;
 
-            const { category_slug } = req.params;
-            let { c_page, p_page } = req.query;
+            const { category_slug } = req.params
+            let { c_page, p_page } = req.query
 
-            c_page = Number(c_page);
-            p_page = Number(p_page);
+            c_page = Number(c_page)
+            p_page = Number(p_page)
 
-            let token = req.headers["authorization"];
+            let token = req.headers["authorization"]
 
             let cats = await categories.findAll({
-                raw: true,
-            });
+                raw: true
+            })
 
-            let wishlist = [];
-            let cart = [];
-            let user;
+            let wishlist = []
+            let cart = []
+            let user
 
             if (token) {
                 let { session_id } = verifyToken(token);
                 let session = await sessions.findOne({
                     where: {
-                        session_id,
+                        session_id
                     },
-                    raw: true,
-                });
+                    raw: true
+                })
 
                 user = await users.findOne({
                     user_id: session.user_id,
@@ -68,9 +68,9 @@ module.exports = class ProductsController {
 
             let category = await categories.findOne({
                 where: {
-                    slug: category_slug,
+                    slug: category_slug
                 },
-                raw: true,
+                raw: true
             });
 
             if (!category) throw new Error("Catetgory not found");
@@ -79,69 +79,78 @@ module.exports = class ProductsController {
                 where: {
                     category_id: category.category_id,
                 },
+                include: {
+                    model: categories
+                },
                 raw: true,
                 limit: p_page ? p_page : 20,
-                offset: c_page && p_page ? p_page * (c_page - 1) : 0,
-            });
+                offset: c_page && p_page ? p_page * (c_page - 1) : 0
+            })
 
             let pros = await products.findAll({
                 where: {
                     sale: {
-                        [Op.gt]: 50,
-                    },
+                        [Op.gt]: 50
+                    }
+                },
+                include: {
+                    model: req.db.categories
                 },
                 raw: true,
-                limit: 8,
-            });
+                limit: 8
+            })
 
             let bests = await bestsellers.findAll({
                 limit: 8,
                 raw: true,
                 include: {
-                    model: products,
-                },
-            });
+                    model: products
+                }
+            })
 
             let banners = await fs.readFile(
-                path.join(__dirname, "..", "banners.json"),
+                path.join(__dirname, "..", "..", "banners.json"),
                 (err, files) => {}
             );
 
             let partners = await sponsors.findAll({
                 raw: true,
-            });
+            })
 
             banners = await JSON.parse(banners);
 
-            res.render("index", {
+            console.log(all)
+
+            res.render("category", {
                 path: "/",
                 title: "Meros | Home",
-                user: user,
                 products_with_sale: pros,
-                categories: cats,
                 bestsellers: bests,
                 cart: cart,
                 wishlist: wishlist,
                 banners: banners,
                 sponsors: partners,
                 products: all,
-            });
+                categories: req.categories,
+                user: req.user
+            })
         } catch (e) {
-            res.render("index", {
+            console.log(e + '')
+            res.render("category", {
                 error: e + "",
                 path: "/",
-                title: "Meros | Home",
-            });
+                title: "Meros | Home"
+            })
         }
     }
 
     static async ProductsFilterGetController(req, res) {
         try {
-            let { p_page, c_page, min, max, brand } = req.query;
+            let { p_page, c_page, min, max, brand } = req.query
 
-            c_page = Number(c_page);
-            p_page = Number(p_page);
-            let products;
+            c_page = Number(c_page)
+            p_page = Number(p_page)
+            let products
             if (brand) {
                 let b = await req.db.product_brands.findOne({
                     where: {
@@ -198,10 +207,10 @@ module.exports = class ProductsController {
 
     static async SingleProductGetController(req, res) {
         try {
-            const { product_id } = req.params;
+            const { product_slug } = req.params;
             let product = await req.db.products.findOne({
                 where: {
-                    product_id,
+                    slug: product_slug
                 },
                 raw: true,
             });
@@ -273,18 +282,18 @@ module.exports = class ProductsController {
                 }
             }
 
-            res.status(200).json({
-                ok: false,
-                result: {
-                    cart,
-                    product,
-                    user,
-                    comments,
-                    categories,
-                    models,
-                    colors,
-                },
-            });
+            console.log(product)
+
+            res.render('single-product', {
+                title: 'Meros | Cart',
+                cart,
+                product,
+                comments,
+                categories: req.categories,
+                models,
+                colors,
+                user: req.user
+            })
         } catch (e) {
             res.status(400).json({
                 ok: false,
@@ -295,21 +304,21 @@ module.exports = class ProductsController {
 
     static async CartAddController(req, res) {
         try {
-            let token = req.headers["authorization"];
-            let { session_id } = verifyToken(token);
-            let { product_id, model_id, product_color_id } = req.body;
+            let token = req.headers["authorization"]
+            let { session_id } = verifyToken(token)
+            let { product_id, model_id, product_color_id } = req.body
 
             let session = await req.db.sessions.findOne({
                 where: {
-                    session_id,
+                    session_id
                 },
-                raw: true,
+                raw: true
             });
             let user = await req.db.users.findOne({
                 where: {
-                    user_id: session.user_id,
+                    user_id: session.user_id
                 },
-                raw: true,
+                raw: true
             });
 
             let cart = await req.db.carts.findOne({
@@ -402,12 +411,6 @@ module.exports = class ProductsController {
                     where: { session_id },
                     raw: true,
                 });
-                user = await req.db.users.findOne({
-                    where: {
-                        user_id: session.user_id,
-                    },
-                    raw: true,
-                });
                 cart = await req.db.carts.findOne({
                     where: {
                         user_id: user.user_id,
@@ -457,39 +460,76 @@ module.exports = class ProductsController {
 
     static async CartGetController(req, res) {
         try {
-            let token = await req.headers["authorization"];
-            let user;
-            let cart;
-            if (token) {
-                let { session_id } = verifyToken(token);
-                let session = await req.db.sessions.findOne({
-                    where: {
-                        session_id,
-                    },
-                    raw: true,
-                });
-                user = await req.db.users.findOne({
-                    where: {
-                        user_id: session.user_id,
-                    },
-                    raw: true,
-                });
-
-                cart = await req.db.carts.findAll({
-                    where: {
-                        user_id: user.user_id,
-                    },
-                    raw: true,
-                    include: {
-                        model: req.db.products,
-                    },
-                });
-            }
-            res.status(200).json({
-                ok: true,
-                cart: cart,
-                user: user,
+            let user = await req.db.users.findOne({
+                where: {
+                    user_id: req.user.id
+                },
+                raw: true,
             });
+
+            let cart = await req.db.carts.findAll({
+                where: {
+                    user_id: user.user_id
+                },
+                raw: true,
+                include: {
+                    model: req.db.products,
+                }
+            })
+
+            let totalPrice = 0
+
+            for (let c of cart) {
+                totalPrice += c['product.price'] * (100 - c['product.sale']) / 100
+            }
+
+            console.log(cart)
+            res.render('cart', {
+                title: 'Meros | Cart',
+                cart: cart,
+                user: req.user,
+                categories: req.categories,
+                totalPrice
+            })
+        } catch (e) {
+            res.status(400).json({
+                ok: false,
+                message: e + "",
+            });
+        }
+    }
+
+    static async CheckoutGetController(req, res) {
+        try {
+            let user = await req.db.users.findOne({
+                where: {
+                    user_id: req.user.id
+                },
+                raw: true,
+            });
+
+            let cart = await req.db.carts.findAll({
+                where: {
+                    user_id: user.user_id
+                },
+                raw: true,
+                include: {
+                    model: req.db.products,
+                }
+            })
+
+            let totalPrice = 0
+
+            for (let c of cart) {
+                totalPrice += c['product.price'] * (100 - c['product.sale']) / 100
+            }
+            res.render('checkout', {
+                title: 'Meros | Checkout',
+                user: user,
+                categories: req.categories,
+                cart,
+                totalPrice
+            })
         } catch (e) {
             res.status(400).json({
                 ok: false,
@@ -646,7 +686,7 @@ module.exports = class ProductsController {
 
     static async ProductsSearchGetController(req, res) {
         try {
-            let { q, c_page, p_page } = req.query;
+            let { q } = req.query;
             let user;
             let token = req.headers["authorization"];
             if (token) {
@@ -677,8 +717,6 @@ module.exports = class ProductsController {
                         },
                     },
                 },
-                offset: p_page * (c_page - 1),
-                limit: p_page,
                 raw: true,
             });
             res.status(200).json({
@@ -775,6 +813,7 @@ module.exports = class ProductsController {
             title: "Meros | Cart",
             path: "/cart",
             user: req.user,
+            categories: req.categories,
         });
     }
 };

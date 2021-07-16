@@ -3,32 +3,42 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link <%= path === '/' ? 'active' : '' %>" aria-current="page" href="/admin">
+                <a class="nav-link" href="/admin">
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <%= path === '/orders' ? 'active' : '' %>" href="/admin/orders">
+                <a class="nav-link" href="/admin/orders">
                     Orders
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <%= path === '/brands' ? 'active' : '' %>" href="/admin/brands">
+                <a class="nav-link" href="/admin/brands?c_page=1&p_page=10">
                     Brands
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <%= path === '/categories' ? 'active' : '' %>" href="/admin/categories">
+                <a class="nav-link" href="/admin/product-brands?c_page=1&p_page=30">
+                    Product brands
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/categories?c_page=1&p_page=10">
                     Categories
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <%= path === '/products' ? 'active' : '' %>" href="/admin/products">
+                <a class="nav-link" href="/admin/add-product">
+                    Add new product
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/products?c_page=1&p_page=30&category_slug=all">
                     Products
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <%= path === '/customers' ? 'active' : '' %>" href="/admin/customers">
+                <a class="nav-link" href="/admin/customers?c_page=1&p_page=30">
                     Customers
                 </a>
             </li>

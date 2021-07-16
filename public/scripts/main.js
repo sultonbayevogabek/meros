@@ -16,10 +16,13 @@ import signup from './_signup'
 import login from './_login'
 import maskCard from './_mask-card'
 import adminCategory from './_admin-category'
-import categoryPagination from './_category-pagination'
 import adminBrand from './_admin-brand'
-import brandPagination from './_brand-pagination'
 import makeAndRemoveAdmin from './_make-remove-admin'
+import productBrandCreate from './_product-brand-create'
+import productCreate from './_product-create'
+import productActions from './_product-actions'
+import addToCart from './_add-to-cart'
+import orderPost from './_order-post'
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -38,8 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
    login()
    maskCard()
    adminCategory()
-   categoryPagination()
    adminBrand()
-   brandPagination()
    makeAndRemoveAdmin()
+   productBrandCreate()
+   productCreate()
+   productActions()
+   addToCart()
+   orderPost()
 })

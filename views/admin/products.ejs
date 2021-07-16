@@ -1,12 +1,14 @@
+<% var products, totalCount %>
 <%- include('header') %>
+
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Meros</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search brands" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="/admin/exit">Sign out</a>
@@ -20,31 +22,88 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Add new product</h1>
+                <h1 class="h2">Products</h1>
+                <div class="d-flex">
+                    <span class="me-3">Filter:</span>
+                    <button class="btn btn-outline-secondary me-1">A-Z</button>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card p-3">
-                        <form>
-                            <fieldset>
-                                <legend>Product images</legend>
-                                <div class="product-images">
-                                    <div class="product-images__item">
-                                        <img src="https://picsum.photos/80/90" alt="">
-                                        <div class="product-images__remove">
-                                            <i class="fa fa-trash"></i>
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Product name</th>
+                            <th>Product category</th>
+                            <th>Product brand</th>
+                            <th>Product images</th>
+                            <th>Product price</th>
+                            <th>Product percent %</th>
+                            <th>In stock</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="brands-table-body">
+                        <% if (products.length > 0) { %>
+                            <% products.forEach(product => { %>
+                                <tr>
+                                    <td>
+                                        <%= product.uz_name %>
+                                    </td>
+                                    <td>
+                                        <%= product['category.uz_name'] %>
+                                    </td>
+                                    <td>
+                                        <%= product['product_brand.brand_name'] %>
+                                    </td>
+                                    <td style="max-width: 300px; overflow: auto">
+                                        <div class="d-flex" style="overflow: auto; width: 100%;">
+                                            <% product.thumb.forEach(img => { %>
+                                                <div class="product-img-in-table">
+                                                    <img class="w-100" src="/images/products/<%= img %>" alt="">
+                                                </div>
+                                            <% }) %>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <input type="file" accept="image/png, image/jpeg" multiple>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
+                                    </td>
+                                    <td>
+                                        <%= product.price %>
+                                    </td>
+                                    <td>
+                                        <%= product.sale %>
+                                    </td>
+                                    <td>
+                                        <%= product.in_stock %>
+                                    </td>
+                                    <td style="width: 130px">
+                                        <button class="btn btn-primary" data-product-edit id="<%= product.product_id %>">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger" data-product-remove id="<%= product.product_id %>">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <%})%>
+                        <% } else { %>
+                            <tr>
+                                <td class="text-center text-danger h5" colspan="6">Empty</td>
+                            </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                    <nav class="mb-4" aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <% for (let i = 0; i < Math.ceil(totalCount / 30); i++) { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="/admin/products?c_page=<%= i + 1 %>&p_page=30&category_slug=all"><%= i + 1 %></a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </main>
     </div>
 </div>
+<%- include('modal') %>
 <%- include('footer') %>

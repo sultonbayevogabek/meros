@@ -1,3 +1,4 @@
+<% var product %>
 <%- include('partials/header.ejs') %>
 <div class="container pt-20">
     <nav class="breadcrumb">
@@ -19,40 +20,17 @@
         <div class="row mb-70">
             <div class="product-gallery">
                 <ul id="lightSliderVertical">
-                    <li data-thumb="/images/single-product/4.png">
-                        <a href="/images/single-product/4.png" data-fancybox="gallery">
-                            <img src="/images/single-product/4.png" />
-                        </a>
-                    </li>
-                    <li data-thumb="/images/single-product/4.png">
-                        <a href="/images/single-product/4.png" data-fancybox="gallery">
-                            <img src="/images/single-product/4.png" />
-                        </a>
-                    </li>
-                    <li data-thumb="/images/single-product/4.png">
-                        <a href="/images/single-product/4.png" data-fancybox="gallery">
-                            <img src="/images/single-product/4.png" />
-                        </a>
-                    </li>
-                    <li data-thumb="/images/single-product/4.png">
-                        <a href="/images/single-product/4.png" data-fancybox="gallery">
-                            <img src="/images/single-product/4.png" />
-                        </a>
-                    </li>
-                    <li data-thumb="/images/single-product/4.png">
-                        <a href="/images/single-product/4.png" data-fancybox="gallery">
-                            <img src="/images/single-product/4.png" />
-                        </a>
-                    </li>
-                    <li data-thumb="/images/single-product/4.png">
-                        <a href="/images/single-product/4.png" data-fancybox="gallery">
-                            <img src="/images/single-product/4.png" />
-                        </a>
-                    </li>
+                    <% product.thumb.forEach(thumb => { %>
+                        <li data-thumb="/images/products/<%= thumb %>">
+                            <a href="/images/products/<%= thumb %>" data-fancybox="gallery">
+                                <img src="/images/products/<%= thumb %>" />
+                            </a>
+                        </li>
+                    <% }) %>
                 </ul>
             </div>
             <div class="product-info">
-                <h2 class="product-name">Ветровка adidas Core18 Rn Jkt</h2>
+                <h2 class="product-name"><%= product.ru_name %></h2>
                 <div class="product-rating">
                     <img src="/images/products/rating.svg" alt="rating stars">
                     <a href="#">Отзывы (50)</a>

@@ -1,4 +1,4 @@
-<% var users, currentUser %>
+<% var users, currentUserRole, totalCount %>
 
 <%- include('header') %>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -36,14 +36,14 @@
                     <th>Email</th>
                     <th>Registered date</th>
                     <th>Role</th>
-                    <% if (currentUser.role === 'superadmin') { %>
+                    <% if (currentUserRole === 'superadmin') { %>
                         <th>Actions</th>
                     <% } %>
                 </tr>
                 </thead>
                 <tbody>
                 <% if (users.length > 0) { %>
-                    <% users.slice(0, 30).forEach(user => { %>
+                    <% users.forEach(user => { %>
                         <tr>
                             <td>
                                 <%= user.full_name %>
@@ -62,7 +62,7 @@
                                     <%= user.role %>
                                 </div>
                             </td>
-                            <% if (currentUser.role === 'superadmin') { %>
+                            <% if (currentUserRole === 'superadmin') { %>
                                 <td style="width: 170px">
                                     <% if (user.role === 'user')  { %>
                                         <button class="btn btn-primary" data-make-admin id="<%= user.user_id %>">
@@ -86,9 +86,10 @@
             </table>
             <nav class="mb-4" aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
-                    <% for (let i = 0; i < Math.ceil(users.length / 10); i++) { %>
+                    <% for (let i = 0; i < Math.ceil(totalCount / 30); i++) { %>
                         <li class="page-item">
-                            <a class="page-link" data-customers-page="<%= i + 1%>"><%= i + 1 %></a></li>
+                            <a class="page-link" href="/admin/customers?c_page=<%= i + 1%>&p_page=30"><%= i + 1 %></a>
+                        </li>
                     <% } %>
                 </ul>
             </nav>

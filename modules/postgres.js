@@ -294,28 +294,28 @@ module.exports = async function () {
         await db.product_colors.hasMany(db.order_details, {
             foreignKey: {
                 name: "product_color_id",
-                allowNull: false,
+                allowNull: true,
             },
         });
 
         await db.order_details.belongsTo(db.product_colors, {
             foreignKey: {
                 name: "product_color_id",
-                allowNull: false,
+                allowNull: true,
             },
         });
 
         await db.models.hasMany(db.order_details, {
             foreignKey: {
                 name: "model_id",
-                allowNull: false,
+                allowNull: true,
             },
         });
 
         await db.order_details.belongsTo(db.models, {
             foreignKey: {
                 name: "model_id",
-                allowNull: false,
+                allowNull: true,
             },
         });
 
@@ -324,28 +324,28 @@ module.exports = async function () {
         await db.product_colors.hasMany(db.carts, {
             foreignKey: {
                 name: "product_color_id",
-                allowNull: false,
+                allowNull: true,
             },
         });
 
         await db.carts.belongsTo(db.product_colors, {
             foreignKey: {
                 name: "product_color_id",
-                allowNull: false,
+                allowNull: true,
             },
         });
 
         await db.models.hasMany(db.carts, {
             foreignKey: {
                 name: "model_id",
-                allowNull: false,
+                allowNull: true,
             },
         });
 
         await db.carts.belongsTo(db.models, {
             foreignKey: {
                 name: "model_id",
-                allowNull: false,
+                allowNull: true,
             },
         });
 
@@ -358,7 +358,7 @@ module.exports = async function () {
             }
         );
 
-        // await sequelize.sync({ force: true })
+        await sequelize.sync({ force: false })
 
         return db;
     } catch (e) {

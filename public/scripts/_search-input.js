@@ -2,10 +2,6 @@ import {selectOne, addClass, removeClass} from './_functions'
 
 export default function searchInput() {
    try {
-      const data = [
-         'Erkaklar kiyimi', 'Erkaklar oyoq kiyimi', 'Erkaklar paypoqlari', 'Erkaklar uchun aksesuarlar', 'Erkaklar uchun ko`zoynaklar'
-      ]
-
       const searchInput = selectOne('.search-form__input'),
          searchingResultList = selectOne('.searching-result__ul'),
          categoriesModalOpenBtn = selectOne('.category-btn')
@@ -26,27 +22,46 @@ export default function searchInput() {
          arr.forEach(item => {
             searchingResultList.innerHTML += `
                <li class="searching-result__li">
-                  <a class="searching-result__link" href="#">
-                      ${item}
-                  </a>
+                  ${item}
                </li>
             `
          })
       }
 
-      searchInput.addEventListener('input', e => {
+      searchInput.addEventListener('input', async e => {
          const searchingProductName = e.target.value.trim().toLowerCase()
 
-         let filteredProductList = data.filter(productName => {
-            return productName.toLowerCase().includes(searchingProductName) && searchingProductName.trim().length > 0
-         })
+         let response = await fetch('/categories/products/search?q=' + searchingProductName)
 
-         filteredProductList = filteredProductList.map(item => {
-            const index = item.toLowerCase().indexOf(searchingProductName)
-            return item.substring(0, index) + '<strong>' + item.substr(index, searchingProductName.length) + '</strong>' + item.substring(index + searchingProductName.length)
+         response = await response.json()
+
+         let data = response.result.products
+
+         let searchingLanguage
+
+         data.forEach(item => {
+            if (item.uz_name.indexOf(searchingProductName) !== -1) {
+               searchingLanguage = 'uz_name'
+            }
+
+            if (item.ru_name.indexOf(searchingProductName) !== -1) {
+               searchingLanguage = 'ru_name'
+            }
+
+            if (item.en_name.indexOf(searchingProductName) !== -1) {
+               searchingLanguage = 'en_name'
+            }
+         })
+         let filteredProductList = data.map(item => {
+            const index = item[searchingLanguage].toLowerCase().indexOf(searchingProductName)
+            return `<a class="searching-result__link" href="/products/${item.slug}">${item[searchingLanguage].substring(0, index)}<strong>${item[searchingLanguage].substr(index, searchingProductName.length)}</strong>${item[searchingLanguage].substring(index + searchingProductName.length)}`
          })
 
          searchingResultRender(filteredProductList)
+
+         if (searchingProductName.length === 0) {
+            addClass(searchingResultList, 'd-none')
+         }
       })
    } catch (e) {
    }

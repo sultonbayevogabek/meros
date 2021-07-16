@@ -13,13 +13,15 @@ const editProfileValidation = require("../../validations/edit-profile-validation
 module.exports = class UsersController {
     static async getSignUp(req, res) {
         res.render('signup', {
-            title: 'Meros | Signup'
+            title: 'Meros | Signup',
+            categories: req.categories
         })
     }
 
     static async getLogin(req, res) {
         res.render('login', {
-            title: 'Meros | Login'
+            title: 'Meros | Login',
+            categories: req.categories
         })
     }
 

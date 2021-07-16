@@ -113,7 +113,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async CategoryGetById(req, res) {
       try {
          const id = req.params.id
@@ -137,7 +136,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async CategoriesDeleteController(req, res) {
       try {
          const {id} = req.body
@@ -159,19 +157,9 @@ module.exports = class AdminController {
          });
       }
    }
-
-   static async adminCategoriesGetController(req, res) {
-      const categories = await req.db.categories.findAll()
-      res.render('admin/categories', {
-         title: 'Categories',
-         path: '/categories',
-         categories
-      })
-   }
-
    static async CategoriesGetController(req, res) {
       try {
-         let { p_page, c_page } = req.query;
+         let {p_page, c_page} = req.query;
          if (!(p_page || c_page)) {
             p_page = 10
             c_page = 1
@@ -180,11 +168,13 @@ module.exports = class AdminController {
             throw new Error("invalid c_page and p_page options");
          }
 
+         const totalCount = await req.db.categories.count()
+
          const categories = await req.db.categories.findAll({
             raw: true,
             limit: p_page,
-            offset: p_page * (c_page - 1),
-         });
+            offset: p_page * (c_page - 1)
+         })
 
          for (let category of categories) {
             let brands = await req.db.brands.findAll({
@@ -196,11 +186,10 @@ module.exports = class AdminController {
             category.brands = brands;
          }
 
-         res.status(200).json({
-            ok: true,
-            result: {
-               categories
-            }
+         res.render('admin/categories', {
+            title: 'Admin | Categories',
+            categories,
+            totalCount
          })
       } catch (e) {
          res.status(400).json({
@@ -209,12 +198,11 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async CategoryPatchController(req, res) {
       try {
          console.log(req.files)
          console.log(req.body)
-         const { uz_name, ru_name, en_name, category_id } =
+         const {uz_name, ru_name, en_name, category_id} =
             await categoryPatchValidation.validateAsync(req.body)
 
          let category = await req.db.categories.findOne({
@@ -330,23 +318,9 @@ module.exports = class AdminController {
       }
    }
 
-   static async adminBrandsGetController(req, res) {
-      const brands = await req.db.brands.findAll({
-         include: req.db.categories
-      }),
-      categories = await req.db.categories.findAll()
-
-      res.render('admin/brands', {
-         title: 'Brands',
-         path: '/brands',
-         brands,
-         categories
-      })
-   }
-
    static async BrandPostController(req, res) {
       try {
-         const { brand_name, brand_site, category_id } = req.body;
+         const {brand_name, brand_site, category_id} = req.body;
 
          let brand = await req.db.brands.findOne({
             where: {
@@ -408,10 +382,9 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async BrandDeleteController(req, res) {
       try {
-         const { id } = req.body
+         const {id} = req.body
          await req.db.brands.destroy({
             where: {
                brand_id: id
@@ -427,10 +400,9 @@ module.exports = class AdminController {
          })
       }
    }
-
    static async BrandsGetController(req, res) {
       try {
-         let { p_page, c_page } = req.query
+         let {p_page, c_page} = req.query
          if (!(p_page || c_page)) {
             p_page = 10
             c_page = 1
@@ -438,6 +410,9 @@ module.exports = class AdminController {
          if (Number(p_page) === NaN || Number(c_page) === NaN) {
             throw new Error("invalid c_page and p_page options");
          }
+
+         const totalCount = await req.db.brands.count()
+         const categories = await req.db.categories.findAll()
 
          const brands = await req.db.brands.findAll({
             raw: true,
@@ -448,11 +423,11 @@ module.exports = class AdminController {
             }
          })
 
-         res.status(200).json({
-            ok: true,
-            result: {
-               brands
-            }
+         res.render('admin/brands', {
+            title: 'Admin | Brands',
+            brands,
+            totalCount,
+            categories
          })
       } catch (e) {
          res.status(400).json({
@@ -461,7 +436,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async BrandGetByIdController(req, res) {
       try {
          const id = req.params.id
@@ -486,7 +460,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async BannersPostController(req, res) {
       try {
          const {banner_name} = bannersPostValidation.validateAsync(
@@ -549,7 +522,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async BannersDeleteController(req, res) {
       try {
          const {banner_name} = await bannersPostValidation.validateAsync(
@@ -582,12 +554,11 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async BrandUpdateController(req, res) {
       try {
          const { brand_name, brand_site, brand_id, category_id } = req.body
 
-         if (!brand_name || !brand_id || !category_id) {
+         if (!brand_name || !brand_site || !brand_id || !category_id) {
             throw new Error("brand_id and brand name is required")
          }
 
@@ -651,44 +622,6 @@ module.exports = class AdminController {
       }
    }
 
-   static async adminProductsGetController(req, res) {
-      res.render('admin/products', {
-         title: 'Products',
-         path: '/products'
-      })
-   }
-
-   static async adminCustomersGetController(req, res) {
-      let users
-      if (req.user.role === 'admin') {
-         users = await req.db.users.findAll({
-            where: {
-               role: {
-                  [Op.and]: {
-                     [Op.ne]: 'admin',
-                     [Op.ne]: 'superadmin'
-                  }
-               }
-            }
-         })
-      } else {
-         users = await req.db.users.findAll({
-            where: {
-               role: {
-                  [Op.ne]: 'superadmin'
-               }
-            }
-         })
-      }
-
-      res.render('admin/customers', {
-         title: 'Customers',
-         path: '/customers',
-         users,
-         currentUser: req.user
-      })
-   }
-
    static async ProductPostController(req, res) {
       try {
          const {
@@ -702,7 +635,7 @@ module.exports = class AdminController {
             en_description,
             category_id,
             product_brand_id,
-            options,
+            options
          } = await productPostValidation.validateAsync(req.body);
 
          let product = await req.db.products.findOne({
@@ -730,6 +663,7 @@ module.exports = class AdminController {
             let type = thumb.mimetype.split("/")[1];
             const thumb_path = path.join(
                __dirname,
+               "..",
                "..",
                "public",
                "images",
@@ -764,24 +698,23 @@ module.exports = class AdminController {
          res.status(201).json({
             ok: true,
             message: "published",
-            product,
+            product
          });
       } catch (e) {
          res.status(400).json({
             ok: false,
-            message: e + "",
+            message: e + ""
          });
       }
    }
-
    static async ProductBrandPostController(req, res) {
       try {
-         const { brand_name } = req.body;
+         const { brand_name } = req.body
          if (!brand_name) throw new Error("Invalid Brand name");
 
          let brand = await req.db.product_brands.create({
-            brand_name,
-         });
+            brand_name
+         })
 
          brand = await brand.dataValues;
 
@@ -789,9 +722,9 @@ module.exports = class AdminController {
             ok: true,
             message: "published",
             result: {
-               brand,
-            },
-         });
+               brand
+            }
+         })
       } catch (e) {
          res.status(400).json({
             ok: false,
@@ -799,10 +732,99 @@ module.exports = class AdminController {
          });
       }
    }
+   static async ProductBrandsGetController(req, res) {
+      try {
+         let { p_page, c_page } = req.query
+         if (!(p_page || c_page)) {
+            p_page = 20
+            c_page = 1
+         }
+         if (Number(p_page) === NaN || Number(c_page) === NaN) {
+            throw new Error("invalid c_page and p_page options");
+         }
 
+         const totalCount = await req.db.product_brands.count()
+
+         const productBrands = await req.db.product_brands.findAll({
+            raw: true,
+            limit: p_page,
+            offset: p_page * (c_page - 1)
+         })
+
+         res.render('admin/product-brands', {
+            title: 'Admin | Products brands',
+            productBrands,
+            totalCount
+         })
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+   static async ProductBrandDeleteController(req, res) {
+      try {
+         const { product_brand_id } = req.body
+         await req.db.product_brands.destroy({
+            where: {
+               product_brand_id
+            }
+         })
+         res.status(200).json({
+            ok: true,
+            message: 'deleted'
+         })
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: 'bad request'
+         })
+      }
+   }
+   static async ProductBrandUpdateController(req, res) {
+      try {
+         const { product_brand_name, product_brand_id } = req.body
+         console.log(req.body)
+         await req.db.product_brands.update({
+            brand_name: product_brand_name
+         }, {
+            where: {
+               product_brand_id: product_brand_id
+            }
+         })
+         res.status(200).json({
+            ok: true,
+            message: 'updated'
+         })
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: 'bad request'
+         })
+      }
+   }
+   static async ProductBrandGetByIdController(req, res) {
+      try {
+         const productBrand = await req.db.product_brands.findOne({
+            where: {
+               product_brand_id: req.params.id
+            }
+         })
+         res.status(200).json({
+            ok: true,
+            productBrand
+         })
+      } catch (e) {
+         res.status(404).json({
+            ok: false,
+            message: 'not found'
+         })
+      }
+   }
    static async ProductColorsPostController(req, res) {
       try {
-         const {product_color_name, product_id} =
+         const { product_color_name, product_id} =
             await productColorsPostValidation.validateAsync(req.body);
          if (!req.files) throw new Error("Thumb is required");
          let thumb = req.files?.thumb;
@@ -845,7 +867,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async ProductModelPostController(req, res) {
       try {
          const {name, difference, difference_price, product_id} =
@@ -872,11 +893,10 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async ProductsGetController(req, res) {
       try {
-         let {p_page, c_page, category_slug} = req.query;
-         let products;
+         let { p_page, c_page, category_slug } = req.query
+         let products
          if (!(p_page || c_page)) {
             p_page = 10
             c_page = 1
@@ -884,6 +904,9 @@ module.exports = class AdminController {
          if (Number(p_page) === NaN || Number(c_page) === NaN) {
             throw new Error("invalid c_page and p_page options");
          }
+
+         let totalCount
+
          if (category_slug === "all") {
             products = await req.db.products.findAll({
                raw: true,
@@ -896,16 +919,19 @@ module.exports = class AdminController {
 
                   {
                      model: req.db.product_brands,
-                  },
-               ],
-            });
+                  }
+               ]
+            })
+
+            totalCount = await req.db.products.count()
          } else {
             let category = await req.db.categories.findOne({
                where: {
-                  slug: category_slug.toLowerCase(),
+                  slug: category_slug.toLowerCase()
                },
-               raw: true,
-            });
+               raw: true
+            })
+
             if (!category) {
                throw new Error("Invalid category");
             }
@@ -924,8 +950,10 @@ module.exports = class AdminController {
                   {
                      model: req.db.product_brands,
                   },
-               ],
-            });
+               ]
+            })
+
+            totalCount = await req.db.products.count()
          }
 
          for (let product of products) {
@@ -945,49 +973,36 @@ module.exports = class AdminController {
             product.colors = colors;
          }
 
-         res.status(200).json({
-            ok: true,
-            result: {
-               products: products
-            }
-         });
+         res.render('admin/products', {
+            title: 'Admin | Products',
+            products,
+            totalCount
+         })
       } catch (e) {
-         console.log(e)
          res.status(400).json({
             ok: false,
             message: e + "",
          });
       }
    }
-
-   static async UsersGetController(req, res) {
+   static async ProductAddGetController(req, res) {
       try {
-         let {c_page, p_page} = req.query;
-         if (!(p_page || c_page)) {
-            (p_page = 20), (c_page = 1);
-         }
-         if (Number(p_page) === NaN || Number(c_page) === NaN) {
-            throw new Error("invalid c_page and p_page options");
-         }
+         const categories = await req.db.categories.findAll(),
+            productBrands = await req.db.product_brands.findAll()
 
-         let users = await req.db.users.findAll({
-            raw: true,
-            limit: p_page,
-            offset: p_page * (c_page - 1),
-         });
+         res.render('admin/add-product', {
+            categories,
+            productBrands,
+            title: 'Admin | Add product'
+         })
 
-         res.status(200).json({
-            ok: true,
-            result: {users},
-         });
       } catch (e) {
          res.status(400).json({
             ok: false,
-            message: e + "",
-         });
+            message: 'bad request'
+         })
       }
    }
-
    static async ProductsPatchController(req, res) {
       try {
          const {
@@ -1095,7 +1110,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async ProductModelPatchValidation(req, res) {
       try {
          const {name, difference, difference_price, model_id} =
@@ -1127,7 +1141,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async ProductColorsPatchController(req, res) {
       try {
          const {product_color_name, product_color_id} =
@@ -1183,14 +1196,147 @@ module.exports = class AdminController {
          });
       }
    }
+   static async ProductsDeleteController(req, res) {
+      try {
+         const { id } = req.body
 
-   static async adminOrdersGetController(req, res) {
-      res.render('admin/orders', {
-         title: 'Orders',
-         path: '/orders'
-      })
+         await req.db.products.destroy({
+            where: {
+               product_id: id
+            }
+         })
+
+         res.status(200).json({
+            ok: true,
+            message: 'deleted'
+         })
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: 'bad request'
+         })
+      }
    }
 
+   static async UsersGetController(req, res) {
+      try {
+         let {c_page, p_page} = req.query
+
+         if (!(p_page || c_page)) {
+            p_page = 20
+            c_page = 1
+         }
+
+         if (Number(p_page) === NaN || Number(c_page) === NaN) {
+            throw new Error("invalid c_page and p_page options");
+         }
+
+         let users
+
+         if (req.user.role === 'admin') {
+            users = await req.db.users.findAll({
+               raw: true,
+               limit: p_page,
+               offset: p_page * (c_page - 1),
+               where: {
+                  role: {
+                     [Op.and]: {
+                        [Op.ne]: 'admin',
+                        [Op.ne]: 'superadmin'
+                     }
+                  }
+               }
+            })
+         } else {
+            users = await req.db.users.findAll({
+               raw: true,
+               limit: p_page,
+               offset: p_page * (c_page - 1),
+               where: {
+                  role: {
+                     [Op.ne]: 'superadmin'
+                  }
+               }
+            })
+         }
+
+         const totalCount = await req.db.users.count()
+
+         res.render('admin/customers', {
+            title: 'Admin | Users',
+            users,
+            totalCount,
+            currentUserRole: req.user.role
+         });
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + "",
+         });
+      }
+   }
+   static async makeAdmin(req, res) {
+      try {
+         const {user_id} = req.body;
+
+         let user = await req.db.users.update({
+               role: "admin",
+            }, {
+               where: {user_id},
+               raw: true,
+               returning: true,
+            }
+         )
+
+         user = await user[1][0]
+
+         res.status(200).json({
+            ok: true,
+            user: user
+         })
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + ""
+         })
+      }
+   }
+   static async removeAdmin(req, res) {
+      try {
+         const {user_id} = req.body;
+
+         let user = await req.db.users.update({
+               role: "user",
+            }, {
+               where: {user_id},
+               raw: true,
+               returning: true,
+            }
+         )
+
+         user = await user[1][0]
+
+         res.status(200).json({
+            ok: true,
+            user: user
+         })
+      } catch (e) {
+         res.status(400).json({
+            ok: false,
+            message: e + ""
+         })
+      }
+   }
+
+   static async adminOrdersGetController(req, res) {
+      const orders = await req.db.orders.findAll()
+      console.log(orders)
+      res.render('admin/orders', {
+         title: 'Orders',
+         path: '/orders',
+         orders: orders
+      })
+   }
    static async OrdersGetController(req, res) {
       try {
          let orders = await req.db.orders.findAll({
@@ -1223,7 +1369,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async OrdersPaymentPatchController(req, res) {
       try {
          const {order_id, is_payed} = req.body;
@@ -1256,7 +1401,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async OrdersDeliveryPatchController(req, res) {
       try {
          const {order_id, is_shipped} = req.body;
@@ -1289,7 +1433,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async SponsorsAddController(req, res) {
       try {
          const {brand_name} = req.body;
@@ -1339,7 +1482,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async SponsorsDeleteController(req, res) {
       try {
          const {sponsor_id} = req.body;
@@ -1370,7 +1512,6 @@ module.exports = class AdminController {
          });
       }
    }
-
    static async SettingsPatchController(req, res) {
       try {
          let data = await settingsPatchValidation.validateAsync(req.body);
@@ -1405,60 +1546,6 @@ module.exports = class AdminController {
             ok: false,
             message: e + "",
          });
-      }
-   }
-
-   static async makeAdmin(req, res) {
-      try {
-         const { user_id } = req.body;
-
-         let user = await req.db.users.update({
-               role: "admin",
-            }, {
-               where: { user_id },
-               raw: true,
-               returning: true,
-            }
-         )
-
-         user = await user[1][0]
-
-         res.status(200).json({
-            ok: true,
-            user: user
-         })
-      } catch (e) {
-         res.status(400).json({
-            ok: false,
-            message: e + ""
-         })
-      }
-   }
-
-   static async removeAdmin(req, res) {
-      try {
-         const { user_id } = req.body;
-
-         let user = await req.db.users.update({
-               role: "user",
-            }, {
-               where: { user_id },
-               raw: true,
-               returning: true,
-            }
-         )
-
-         user = await user[1][0]
-
-         res.status(200).json({
-            ok: true,
-            user: user
-         })
-      } catch (e) {
-         res.status(400).json({
-            ok: false,
-            message: e + ""
-         })
       }
    }
 }

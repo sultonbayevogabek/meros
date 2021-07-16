@@ -100,6 +100,7 @@ module.exports = class OrderController {
 
     static async BulkOrderController(req, res) {
         try {
+            console.log(req.body)
             const {
                 shipping_region,
                 shipping_address,
@@ -108,7 +109,7 @@ module.exports = class OrderController {
                 is_shipped,
                 is_payed,
                 payment_method,
-                description,
+                description
             } = req.body;
 
             if (!req.user) {
@@ -143,13 +144,13 @@ module.exports = class OrderController {
             let total = 0;
 
             for (let c of cart) {
-                var order_item = await req.db.order_details.create({
+                let order_item = await req.db.order_details.create({
                     product_id: c.product_id,
                     count: c.count,
                     product_color_id: c.product_color_id,
                     order_id: order.order_id,
                     model_id: c.model_id,
-                });
+                })
                 order_item = await order_item.dataValues;
 
                 let product = await req.db.products.findOne({
@@ -157,17 +158,17 @@ module.exports = class OrderController {
                         product_id: c.product_id,
                     },
                     raw: true,
-                });
-                let model;
+                })
+                let model
                 if (c.model_id) {
                     model = await req.db.models.findOne({
                         where: {
                             model_id: c.model_id,
                         },
-                        raw: true,
-                    });
+                        raw: true
+                    })
                 }
-                let price;
+                let price
 
                 let product_price = (product.price / 100) * product.sale;
 
@@ -177,7 +178,7 @@ module.exports = class OrderController {
                             ? product_price + model.difference_price
                             : product_price - model.difference_price;
                 } else {
-                    price = count * product_price;
+                    price = c.count * product_price;
                 }
                 total += price;
             }

@@ -206,11 +206,16 @@ export default function adminBrand() {
             formData.append('brand_id', brandFormSubmitBtn.id)
             formData.append('category_id', brandCategorySelect.value)
 
+            console.log(clearText(brandName.value), clearText(brandSite.value), brandFormSubmitBtn.id, brandCategorySelect.value)
+
             let response = await fetch('/admin/api/update/brand', {
                method: 'POST',
                body: formData
             })
+
             response = await response.json()
+
+            console.log(response)
 
             if (response.ok) {
                window.location.reload()
@@ -229,5 +234,6 @@ export default function adminBrand() {
             }
          })
       }
-   } catch (e) { }
+   } catch (e) {
+   }
 }

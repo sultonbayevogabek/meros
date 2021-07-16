@@ -1,6 +1,7 @@
+<% var user %>
 <aside class="cabinet__sidebar">
     <div class="cabinet__profile__img__wrapper">
-        <img class="cabinet__profile__img" src="<%= user.avatar %>" alt="Profile img">
+        <img class="cabinet__profile__img" src="<%= user.img %>" alt="Profile img">
         <div>
             <img src="/images/icons/camera.svg" alt="camera icon">
         </div>
@@ -8,7 +9,7 @@
     <div class="cabinet__texts__wrapper">
         <div class="cabinet__sidebar__part">
             <h2 class="cabinet__username">
-                Вахабов Абдулбасит
+                <%= user.name %>
             </h2>
             <a class="cabinet__sidebar__link mb-15 <%= path === '/cabinet/edit' ? 'active' : null %>"
                 href="/cabinet/edit">

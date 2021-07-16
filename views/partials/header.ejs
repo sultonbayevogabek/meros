@@ -1,4 +1,4 @@
-<% var path, user %>
+<% var path, user, categories %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -358,54 +358,11 @@
         <div class="header-bottom">
             <nav class="header-bottom__nav">
                 <ul class="header-bottom__ul">
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/books' ? 'active' : '' %>"
-                           href="/books">Книги</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/souvenirs' ? 'active' : '' %>"
-                           href="/souvenirs">Сувениры</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/for-men' ? 'active' : '' %>"
-                           href="/for-men">Для
-                            мужчин</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/for-women' ? 'active' : '' %>"
-                           href="/for-women">Для
-                            женщин</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/for-kids' ? 'active' : '' %>"
-                           href="/for-kids">Для
-                            детей</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/attributes' ? 'active' : '' %>"
-                           href="/attributes">Атрибутика</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/healing-healthy' ? 'active' : '' %>"
-                           href="/healing-healthy">Личение и здоровые</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/food' ? 'active' : '' %>" href="/food">Продукты
-                            питания</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/gift-ideas' ? 'active' : '' %>"
-                           href="/gift-ideas">Идеи
-                            подарка</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/meros-merch' ? 'active' : '' %>"
-                           href="/meros-merch">Meros Мерч</a>
-                    </li>
-                    <li class="header-bottom__li">
-                        <a class="header-bottom__link <%= path === '/meros-diskont' ? 'active' : '' %>"
-                           href="/meros-diskont">Meros Diskont</a>
-                    </li>
+                    <% for (let i = 0; i < 12; i++) { %>
+                        <li class="header-bottom__li">
+                            <a class="header-bottom__link" href="/categories/<%= categories[i].slug %>"><%= categories[i].ru_name[0].toUpperCase() + categories[i].ru_name.substring(1) %></a>
+                        </li>
+                    <% } %>
                 </ul>
             </nav>
         </div>
