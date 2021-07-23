@@ -20,36 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7651015b-46ce-43da-9dc8-03bbb6c8b4ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/cabinet/cabinet-get.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cabinet/cabinet-get.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/home/home-get.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/product/product-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/product/product-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meros.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/user-middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/user-middleware.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/_add-to-cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_add-to-cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/_order-post.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/_order-post.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/bundle.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/slider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_base.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_checkout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_checkout.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_header.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_media.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_media.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_popular-categories.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_popular-categories.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/_products.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/_products.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/cabinet-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/cabinet-route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cabinet/cabinet.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/cabinet/cabinet.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cabinet/orders.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/cabinet/orders.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cabinet/saved-cards.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/cabinet/saved-cards.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cabinet/sidebar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/cabinet/sidebar.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/category.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/category.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/checkout.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/checkout.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,19 +48,19 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\WEB ISHLANMALARIM\meros\views\cabinet" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\views" />
-      <recent name="D:\WEB ISHLANMALARIM\meros" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\views\admin" />
-      <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\WEB ISHLANMALARIM\meros\controllers\product" />
       <recent name="D:\WEB ISHLANMALARIM\meros\controllers\order" />
       <recent name="D:\WEB ISHLANMALARIM\meros\controllers\home" />
       <recent name="D:\WEB ISHLANMALARIM\meros\controllers\users" />
       <recent name="D:\WEB ISHLANMALARIM\meros\views\cabinet" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WEB ISHLANMALARIM\meros\views\cabinet" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\views" />
+      <recent name="D:\WEB ISHLANMALARIM\meros" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\views\admin" />
+      <recent name="D:\WEB ISHLANMALARIM\meros\public\scripts" />
     </key>
   </component>
   <component name="SvnConfiguration">
