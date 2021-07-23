@@ -112,47 +112,46 @@
         <h2 class="section__heading">Оформление</h2>
         <form class="checkout__form" id="order-form">
             <div class="checkout__form__left">
-                <div class="row mb-30">
-                    <div class="checkout__form__field"  style="width: 100%">
+                <div class="row">
+                    <div class="checkout__form__field w-100">
                         <label class="checkout__form__text">Выберите область</label>
-                        <div class="custom-select" style="width: 100%">
-                            <select id="order-region" style="width: 100%">
-                                <option disabled>Область</option>
-                                <option value="Xorazm">Xorazm</option>
-                                <option value="Toshkent">Toshkent</option>
-                                <option value="Qarshi">Qarshi</option>
-                            </select>
+                        <div class="select mb-20 w-100">
+                            <div class="select__selected w-100" id="region"></div>
+                            <ul class="select__list d-none">
+                                <li class="select__item">Андижанская область</li>
+                                <li class="select__item">Бухарская область</li>
+                                <li class="select__item">Джизакская область</li>
+                                <li class="select__item">Кашкадарьинская область</li>
+                                <li class="select__item">Навоийская область</li>
+                                <li class="select__item">Наманганская область</li>
+                                <li class="select__item">Самаркандская область</li>
+                                <li class="select__item">Сурхандарьинская область</li>
+                                <li class="select__item">Сырдарьинская область</li>
+                                <li class="select__item">Ташкентская область</li>
+                                <li class="select__item">Ферганская область</li>
+                                <li class="select__item">Хорезмская область</li>
+                                <li class="select__item">Республика Каракалпакстан</li>
+                            </ul>
                         </div>
                     </div>
-<!--                    <div class="checkout__form__field">-->
-<!--                        <label class="checkout__form__text">Район</label>-->
-<!--                        <div class="custom-select">-->
-<!--                            <select>-->
-<!--                                <option value="0">Район</option>-->
-<!--                                <option value="1">Xorazm</option>-->
-<!--                                <option value="2">Toshkent</option>-->
-<!--                                <option value="3">Qarshi</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
                 <div class="row mb-30">
                     <label class="checkout__form__text" for="address">Адрес</label>
-                    <input class="input" id="order-address" required minlength="3" type="text" placeholder="пример: Ташкентская область, Бектемирский район, улица ...">
+                    <input class="input" id="address" required minlength="3" type="text" placeholder="пример: Ташкентская область, Бектемирский район, улица ...">
                 </div>
                 <div class="row mb-20">
                     <div class="checkout__form__field">
                         <label class="checkout__form__text" for="name">ФИО получателя</label>
-                        <input class="input" type="text" id="order-owner-name" required minlength="3" placeholder="Имя фамилия">
+                        <input class="input" type="text" id="name" required minlength="3" placeholder="Имя фамилия">
                     </div>
                     <div class="checkout__form__field">
                         <label class="checkout__form__text" for="user_phone">Номер телефона</label>
-                        <input class="input" type="tel" id="order-owner-phone" required minlength="3" name="phone">
+                        <input class="input" type="tel" id="phone" required minlength="3" name="phone">
                     </div>
                 </div>
                 <div class="row">
                     <label class="checkout__form__text">Оставьте комментарий к заказу</label>
-                    <textarea class="input" id="order-owner-comment" style="height: 200px;" required></textarea>
+                    <textarea class="input" id="review" required></textarea>
                 </div>
             </div>
             <div class="cart__products__total">

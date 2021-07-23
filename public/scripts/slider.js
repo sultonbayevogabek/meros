@@ -57,6 +57,39 @@ document.addEventListener('DOMContentLoaded', function () {
    } catch (e) {
    }
    try {
+      new Splide('.popular-authors__slider', {
+         type: 'loop',
+         speed: 400,
+         autoplay: true,
+         arrows: true,
+         interval: 2000,
+         pauseOnHover: true,
+         pauseOnFocus: true,
+         perPage: 6,
+         perMove: 1,
+         gap: '72px',
+         pagination: false,
+         breakpoints: {
+            '1400': {
+               perPage: 5,
+               width: '100%',
+               gap: '20px'
+            },
+            '1343': {
+               perPage: 4,
+               width: '100%',
+               gap: '20px'
+            },
+            '1020': {
+               perPage: 3,
+               width: '100%',
+               gap: '15px'
+            }
+         }
+      }).mount()
+   } catch (e) {
+   }
+   try {
       new Splide('.recommends-for-you__slider', {
          type: 'loop',
          speed: 400,
@@ -89,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }).mount()
    } catch (e) {
    }
- 
    try {
       new Splide('.brands__slider', {
          type: 'loop',

@@ -23,6 +23,7 @@ import productCreate from './_product-create'
 import productActions from './_product-actions'
 import addToCart from './_add-to-cart'
 import orderPost from './_order-post'
+import categoryIntroNav from './_category-intro-nav'
 
 document.addEventListener('DOMContentLoaded', () => {
    cabinetDropdown()
@@ -48,4 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
    productActions()
    addToCart()
    orderPost()
+   categoryIntroNav()
 })

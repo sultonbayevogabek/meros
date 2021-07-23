@@ -3,36 +3,17 @@ import {selectOne} from './_functions'
 export default function () {
    try {
       const orderForm = selectOne('#order-form'),
-         orderRegion = orderForm.querySelector('#order-region'),
-         orderAddress = orderForm.querySelector('#order-address'),
-         orderOwnerName = orderForm.querySelector('#order-owner-name'),
-         orderOwnerPhone = orderForm.querySelector('#order-owner-phone'),
-         orderOwnerComment = orderForm.querySelector('#order-owner-comment'),
+         orderRegion = orderForm.querySelector('#region'),
+         orderAddress = orderForm.querySelector('#address'),
+         orderOwnerName = orderForm.querySelector('#name'),
+         orderOwnerPhone = orderForm.querySelector('#phone'),
+         orderOwnerComment = orderForm.querySelector('#review'),
          orderSubmitBtn = selectOne('#order-form-submit')
-
-      console.log(
-         orderForm,
-         orderRegion,
-         orderAddress,
-         orderOwnerName,
-         orderOwnerPhone,
-         orderOwnerComment,
-         orderSubmitBtn
-      )
 
       orderForm.addEventListener('submit', async e => {
          e.preventDefault()
 
          const formData = new FormData()
-
-         // formData.append('shipping_region', orderRegion.value)
-         // formData.append('shipping_address', orderAddress.value)
-         // formData.append('phone_number', orderOwnerPhone.value)
-         // formData.append('full_name', orderOwnerName.value)
-         // formData.append('is_shipped', 'false')
-         // formData.append('is_payed', 'false')
-         // formData.append('payment_method', 'card')
-         // formData.append('description', orderOwnerComment.value)
 
          let response = await fetch('/order/bulk/', {
             headers: {
@@ -40,7 +21,7 @@ export default function () {
             },
             method: 'POST',
             body: JSON.stringify({
-               shipping_region: orderRegion.value,
+               shipping_region: orderRegion.textContent,
                shipping_address: orderAddress.value,
                phone_number: orderOwnerPhone.value,
                full_name: orderOwnerName.value,
@@ -52,6 +33,8 @@ export default function () {
          })
 
          response = await response.json()
+
+         console.log(response)
 
          if (response.result.link) {
             window.location.href = response.result.link

@@ -47,7 +47,29 @@
     </div>
 </section>
 
-<div class="modal modal--add-card">
+<section class="cabinet">
+    <div class="container">
+        <div class="cabinet__content">
+            <%- include("sidebar")%>
+            <main class="main--save-card">
+                <h2 class="section__heading">
+                    Сохраненные карты
+                </h2>
+                <div class="search__result-box">
+                    <div class="not-found__box">
+                        <img src="/images/icons/search2.svg" alt="search icon">
+                        <span>У вас нет сохраненных карт</span>
+                    </div>
+                    <button class="button-blue" type="button">
+                        Добавить карту
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<div class="modal modal--add-card d-none">
     <div class="modal-content">
         <h2>Привязка банковской карты</h2>
         <form class="modal-form modal-form--add-card">

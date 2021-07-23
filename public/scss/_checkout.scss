@@ -10,6 +10,35 @@
 .checkout__form {
    display: flex;
    justify-content: space-between;
+
+   .select__selected {
+      height: 48px;
+      border: 1px solid #D2D2D2;
+   }
+
+   .select__list {
+      top: 48px;
+   }
+
+   textarea {
+      height: 200px;
+      padding: 20px;
+      resize: none;
+   }
+
+   .select__list {
+      max-height: 300px;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+         width: 3px;
+         background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+         background: #cccccc;
+      }
+   }
 }
 
 .checkout__left {

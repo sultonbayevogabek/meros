@@ -525,7 +525,7 @@ module.exports = class ProductsController {
             }
             res.render('checkout', {
                 title: 'Meros | Checkout',
-                user: user,
+                user: req.user,
                 categories: req.categories,
                 cart,
                 totalPrice

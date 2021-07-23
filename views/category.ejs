@@ -93,7 +93,9 @@
                                     <span class="product-card__new-price"><%= products[0].price %> сум</span>
                                 <% } %>
                             </div>
-                            <button class="to-cart" data-add-cart id="<%= products[0].product_id %>">В корзину</button>
+                            <div class="product-card__cart">
+                                <button class="to-cart" data-add-cart id="<%= products[0].product_id %>">В корзину</button>
+                            </div>
                         </div>
                     </div>
                 <% } %>

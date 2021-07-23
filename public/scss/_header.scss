@@ -43,7 +43,7 @@
    font-weight: 500;
    font-size: 14px;
    line-height: 20px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: $primary-text-color;
    transition: 0.3s all ease;
 
@@ -68,7 +68,7 @@
    font-weight: 500;
    font-size: 14px;
    line-height: 20px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: $primary-text-color;
    transition: 0.2s all ease;
 
@@ -119,7 +119,7 @@
       font-weight: 600;
       font-size: 18px;
       line-height: 24px;
-      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
       color: #FFFFFF;
    }
 
@@ -173,7 +173,7 @@
    font-weight: 500;
    font-size: 14px;
    line-height: 16px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: #8D909B;
 
    &:hover {
@@ -196,7 +196,7 @@
    font-weight: 500;
    font-size: 14px;
    line-height: 16px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: $primary-text-color;
 
    &::placeholder {
@@ -218,7 +218,7 @@
       margin-right: 18px;
       font-size: 16px;
       line-height: 19px;
-      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
       color: #8D909B;
    }
 }
@@ -250,7 +250,7 @@
    font-weight: 500;
    font-size: 16px;
    line-height: 19px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: $primary-text-color;
    transition: 0.2s all ease;
 
@@ -267,6 +267,28 @@
          fill: $primary-blue-color;
       }
    }
+
+   &--cart {
+      position: relative;
+   }
+}
+
+.header-middle__link--cart-count {
+   position: absolute;
+   top: -35%;
+   right: -4%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background-color: #3AC267;
+   font-family: "Roboto", sans-serif;
+   font-weight: 500;
+   font-size: 10px;
+   line-height: 10px;
+   color: #FFFFFF;
 }
 
 #cabinet {
@@ -302,7 +324,7 @@
       font-weight: 700;
       font-size: 18px;
       line-height: 21px;
-      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
       color: $primary-text-color;
    }
 
@@ -311,7 +333,7 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 16px;
-      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
       color: #8D909B;
    }
 }
@@ -363,7 +385,7 @@
    font-weight: 500;
    font-size: 18px;
    line-height: 21px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: $primary-text-color;
    transition: 0.3s;
 
@@ -396,7 +418,7 @@
    font-weight: 500;
    font-size: 16px;
    line-height: 19px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: $primary-text-color;
    transition: 0.2s all ease;
 
@@ -452,6 +474,28 @@
    &.active {
       color: $primary-yellow-color;
    }
+
+   &--cart {
+      position: relative;
+   }
+}
+
+.bottom-nav__link--cart-count {
+   position: absolute;
+   top: -18%;
+   right: -27%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
+   background-color: #3AC267;
+   font-family: "Roboto", sans-serif;
+   font-weight: 500;
+   font-size: 8px;
+   line-height: 9px;
+   color: #FFFFFF;
 }
 
 .menu-btn {
@@ -485,7 +529,7 @@
       font-weight: 700;
       font-size: 18px;
       line-height: 21px;
-      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
       color: #273142;
    }
 }
@@ -510,7 +554,7 @@
    font-weight: 500;
    font-size: 18px;
    line-height: 21px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: #273142;
    cursor: pointer;
    border-bottom: 1px solid #E8EDF1;
@@ -530,6 +574,7 @@
       .categories-menu__content {
          display: block;
       }
+
       .cetegories-menu__round {
          border: none;
          background-image: url("/images/icons/radio-fill.svg");
@@ -551,7 +596,7 @@
       font-weight: 500;
       font-size: 18px;
       line-height: 21px;
-      font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+      font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
       border-bottom: 1px solid #E8EDF1;
       color: #273142;
    }
@@ -571,7 +616,7 @@
    font-weight: 500;
    font-size: 18px;
    line-height: 21px;
-   font-feature-settings: 'pnum' on, 'lnum' on, 'liga' off;
+   font-feature-settings: 'pnum'on, 'lnum'on, 'liga'off;
    color: #273142;
    border-bottom: 1px solid #E8EDF1;
 }

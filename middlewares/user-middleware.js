@@ -42,6 +42,8 @@ module.exports = async (req, res, next) => {
             img: user.avatar,
             role: user.role
         }
+
+        console.log(user)
     }
 
     next();

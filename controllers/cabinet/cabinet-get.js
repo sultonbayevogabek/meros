@@ -24,4 +24,49 @@ const savedCardsGet = async (req, res) => {
    })
 }
 
-module.exports = { cabinetGet, cabinetEditGet, savedCardsGet }
+const ordersGet = async (req, res) => {
+   res.render('cabinet/orders', {
+      title: 'Meros | Orders',
+      path: '/cabinet/orders',
+      user: req.user,
+      categories: req.categories
+   })
+}
+
+const boughtProductsGet = async (req, res) => {
+   res.render('cabinet/bought-products', {
+      title: 'Meros | Orders',
+      path: '/cabinet/bought-products',
+      user: req.user,
+      categories: req.categories
+   })
+}
+
+const regularDeliveriesGet = async (req, res) => {
+   res.render('cabinet/regular-deliveries', {
+      title: 'Meros | Regular Deliveries',
+      path: '/cabinet/regular-deliveries',
+      user: req.user,
+      categories: req.categories
+   })
+}
+const notificationSettingsGet = async (req, res) => {
+   res.render('cabinet/notification-settings', {
+      title: 'Meros | Notification Settings',
+      path: '/cabinet/notification-settings',
+      user: req.user,
+      categories: req.categories
+   })
+}
+
+const myDetailsGet = async (req, res) => {
+   res.render('cabinet/my-details', {
+      title: 'Meros | My Details',
+      path: '/cabinet/my-details',
+      user: req.user,
+      categories: req.categories
+   })
+}
+
+module.exports = { cabinetGet, cabinetEditGet, savedCardsGet,
+   ordersGet, boughtProductsGet, regularDeliveriesGet, notificationSettingsGet, myDetailsGet }

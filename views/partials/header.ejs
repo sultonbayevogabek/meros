@@ -317,8 +317,9 @@
                         </li>
                         <li class="header-middle__li">
                             <a class="header-middle__link" href="/cart">
-                                <svg width="22" height="22" viewBox="0 0 22 22" fill="#000000"
-                                     xmlns="http://www.w3.org/2000/svg">
+                                <span class="header-middle__link--cart">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="#000000"
+                                         xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                           d="M6.41675 19.2498C6.41675 18.2373 7.23756 17.4165 8.25008 17.4165C9.2626 17.4165 10.0834 18.2373 10.0834
                                       19.2498C10.0834 20.2624 9.2626 21.0832 8.25008 21.0832C7.23756 21.0832 6.41675 20.2624 6.41675 19.2498Z"
@@ -336,7 +337,9 @@
                                       13.0122C7.98101 13.2233 8.09581 13.4128 8.26339 13.5477C8.43098 13.6826 8.64067 13.7543 8.85577 13.7502L8.87333
                                       13.75H17.7833L17.8009 13.7502C18.016 13.7543 18.2257 13.6826 18.3933 13.5477C18.5601 13.4134 18.6746 13.225 18.717
                                       13.0152L19.9753 6.41666H6.619Z" fill=""/>
-                                </svg>
+                                    </svg>
+                                    <span class="header-middle__link--cart-count">3</span>
+                                </span>
                                 <span>Корзина</span>
                             </a>
                         </li>
@@ -383,7 +386,10 @@
                 </li>
                 <li class="bottom-nav__li">
                     <a class="bottom-nav__link <%= (path === '/cart') ? 'active' : '' %>" href="/cart">
-                        <img src="/images/bottom-nav/cart<%= (path === '/cart') ? '-active' : '' %>.svg" alt="icon">
+                        <span class="bottom-nav__link--cart">
+                            <span class="bottom-nav__link--cart-count">3</span>
+                            <img src="/images/bottom-nav/cart<%= (path === '/cart') ? '-active' : '' %>.svg" alt="icon">
+                        </span>
                         <span>Корзина</span>
                     </a>
                 </li>

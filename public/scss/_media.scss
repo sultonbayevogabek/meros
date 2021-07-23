@@ -228,9 +228,62 @@
       grid-template-columns: 1fr 1fr 1fr 1fr;
    }
 
+   .category-intro__header {
+      margin-bottom: 10px;
+   }
+
    .product-card__header img {
       height: 80%;
       width: auto;
+   }
+
+   .category-intro {
+      padding-top: 20px;
+   }
+
+   .category-intro__nav {
+      position: relative;
+      margin: 0 -10px 20px;
+      padding: 10px;
+   }
+
+   .category-intro__ul {
+      position: absolute;
+      display: none;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #F4F7F8;
+   }
+
+   .category-intro__li {
+      width: 100%;
+   }
+
+   .category-intro__link {
+      padding: 0 10px 10px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      text-transform: capitalize;
+   }
+
+   .category-intro__nav-open {
+      display: flex;
+   }
+
+   .category-intro__big-ad {
+      height: auto;
+      margin-bottom: 10px;
+      border-radius: 5px;
+   }
+
+   .category-intro__small-ads {
+      grid-column-gap: 10px;
+   }
+
+   .category-intro__small-ad {
+      height: auto;
    }
 }
 
@@ -373,6 +426,32 @@
    .products-every-day .grid-container {
       grid-template-columns: 1fr 1fr;
       grid-gap: 15px
+   }
+
+   .category-intro__small-ads {
+      grid-template-columns: 1fr;
+      grid-row-gap: 10px;
+   }
+
+   .category-intro__small-ad img {
+      width: 100%;
+   }
+
+   .category-intro__small-ad a {
+      display: block;
+      width: 100%;
+   }
+
+   .category-intro__header {
+      .section__heading {
+         width: 100%;
+         line-height: 20px;
+      }
+   }
+
+   .category-intro__total-count {
+      font-size: 11px;
+      line-height: 13px;
    }
 }
 
@@ -828,6 +907,21 @@
          font-size: 14px;
          line-height: 16px;
       }
+   }
+
+   .popular-authors__card {
+      h3 {
+         font-size: 9px;
+         line-height: 11px;
+      }
+
+      img {
+         margin-bottom: 5px;
+      }
+   }
+
+   .section__header {
+      margin-bottom: 15px !important;
    }
 }
 

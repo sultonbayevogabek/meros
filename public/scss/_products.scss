@@ -168,3 +168,31 @@
    padding: 0;
    background-color: transparent;
 }
+
+.product-card__cart {
+   display: flex;
+   align-items: center;
+   padding-top: 10px;
+
+   span {
+      display: block;
+      margin: 0 15px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+      text-transform: capitalize;
+      font-feature-settings: 'tnum' on, 'lnum' on;
+      color: #273142;
+   }
+}
+
+.product-card__cart__btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 45px;
+   height: 45px;
+   background: #F4F7F8;
+   border-radius: 4px;
+}
