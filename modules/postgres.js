@@ -2,12 +2,12 @@ const { Sequelize } = require("sequelize");
 
 const Models = require("../models/models");
 
-const sequelize = new Sequelize(
-   "postgres://postgres:123@localhost:5432/meros",
-   {
-       logging: false,
-   }
-);
+// import config from "../config/config";
+const config = require("../config");
+console.log(config);
+const sequelize = new Sequelize(config.DB_URL, {
+    logging: false,
+});
 
 module.exports = async function () {
     try {
@@ -31,8 +31,22 @@ module.exports = async function () {
         db.product_brands = await Models.ProductBrands(Sequelize, sequelize);
         db.comments = await Models.Comments(Sequelize, sequelize);
         db.comment_thumbs = await Models.CommentThumbs(Sequelize, sequelize);
-
+        db.recomendations = await Models.Recomendations(Sequelize, sequelize);
         await db.products.hasMany(db.order_details, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.products.hasOne(db.recomendations, {
+            foreignKey: {
+                name: "product_id",
+                allowNull: false,
+            },
+        });
+
+        await db.recomendations.belongsTo(db.products, {
             foreignKey: {
                 name: "product_id",
                 allowNull: false,
@@ -349,16 +363,16 @@ module.exports = async function () {
             },
         });
 
-        await db.users.update(
-            { role: "superadmin" },
-            {
-                where: {
-                    user_id: "37421857-dc9e-4216-8dc4-35961ec6e749",
-                },
-            }
-        );
+        // await db.users.update(
+        //     { role: "superadmin" },
+        //     {
+        //         where: {
+        //             user_id: "db59ee3a-fe6f-41f5-badb-c7d84c18cc83",
+        //         },
+        //     }
+        // );
 
-        await sequelize.sync({ force: false })
+        await sequelize.sync({ force: false });
 
         return db;
     } catch (e) {
